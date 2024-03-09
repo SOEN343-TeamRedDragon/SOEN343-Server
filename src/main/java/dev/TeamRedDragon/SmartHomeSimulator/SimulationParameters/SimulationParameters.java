@@ -1,16 +1,24 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationParameters;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.sql.Time;
 import java.time.Clock;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
+@Entity
 public class SimulationParameters {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private Double insideTemperature;
     private Double outsideTemperature;
     private LocalDate simulationDate;
-    private Clock clock;
     private Double timeSpeed;
 
     public SimulationParameters(Double insideTemperature,
@@ -22,7 +30,6 @@ public class SimulationParameters {
         this.insideTemperature = insideTemperature;
         this.outsideTemperature = outsideTemperature;
         this.simulationDate = simulationDate;
-        this.clock = clock;
         this.timeSpeed = timeSpeed;
     }
 
@@ -38,13 +45,12 @@ public class SimulationParameters {
         return simulationDate;
     }
 
-    public Clock getClock() {
-        return clock;
-    }
 
     public Double getTimeSpeed() {
         return timeSpeed;
     }
+
+    public Integer getId() { return id;}
 
     public void setInsideTemperature(Double insideTemperature) {
         this.insideTemperature = insideTemperature;
@@ -58,12 +64,12 @@ public class SimulationParameters {
         this.simulationDate = simulationDate;
     }
 
-    public void setClock(Clock clock) {
-        this.clock = clock;
-    }
-
     public void setTimeSpeed(Double timeSpeed) {
         this.timeSpeed = timeSpeed;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override
@@ -72,7 +78,6 @@ public class SimulationParameters {
                 "insideTemperature=" + insideTemperature +
                 ", outsideTemperature=" + outsideTemperature +
                 ", simulationDate=" + simulationDate +
-                ", clock=" + clock +
                 ", timeSpeed=" + timeSpeed +
                 '}';
     }

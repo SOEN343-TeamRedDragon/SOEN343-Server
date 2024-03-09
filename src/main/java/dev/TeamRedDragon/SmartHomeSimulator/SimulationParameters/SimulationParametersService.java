@@ -1,9 +1,12 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationParameters;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
-
+@Service
 public class SimulationParametersService {
-
+    @Autowired
     private SimulationParametersRepository SimulationParametersRepository;
 
     public SimulationParameters saveSimulationParameters(SimulationParameters SimulationParameters){
@@ -34,7 +37,7 @@ public class SimulationParametersService {
 
         existingSimulationParameters.setInsideTemperature(SimulationParameters.getInsideTemperature());
         existingSimulationParameters.setOutsideTemperature(SimulationParameters.getOutsideTemperature());
-        existingSimulationParameters.setSimulationDate(SimulationParameters.getSimulationDate());
+        existingSimulationParameters.setDateTime(SimulationParameters.getDateTime());
         existingSimulationParameters.setTimeSpeed(SimulationParameters.getTimeSpeed());
         return SimulationParametersRepository.save(existingSimulationParameters);
 

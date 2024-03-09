@@ -1,16 +1,14 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationParameters;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/SimulationParameters")
 public class SimulationParametersController {
-
+    @Autowired
     private SimulationParametersService SimulationParameterService;
 
     @GetMapping("/")
@@ -18,7 +16,7 @@ public class SimulationParametersController {
         return SimulationParameterService.getSimulationParameters();
     }
 
-    @GetMapping("/AddSimulationParameters")
+    @PostMapping("/AddSimulationParameters")
     public String addSimulationParameters(@RequestBody SimulationParameters SimulationParameters){
         SimulationParameterService.saveSimulationParameters(SimulationParameters);
         return "Simulation Parameters are sucessfully added!";

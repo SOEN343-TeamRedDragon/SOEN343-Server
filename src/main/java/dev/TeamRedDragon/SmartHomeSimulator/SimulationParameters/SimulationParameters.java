@@ -19,7 +19,6 @@ public class SimulationParameters {
     private Double insideTemperature;
     private Double outsideTemperature;
     private LocalDate simulationDate;
-    private Clock clock;
     private Double timeSpeed;
 
     public SimulationParameters(Double insideTemperature,
@@ -31,7 +30,6 @@ public class SimulationParameters {
         this.insideTemperature = insideTemperature;
         this.outsideTemperature = outsideTemperature;
         this.simulationDate = simulationDate;
-        this.clock = clock;
         this.timeSpeed = timeSpeed;
     }
 
@@ -47,9 +45,6 @@ public class SimulationParameters {
         return simulationDate;
     }
 
-    public Clock getClock() {
-        return clock;
-    }
 
     public Double getTimeSpeed() {
         return timeSpeed;
@@ -69,10 +64,6 @@ public class SimulationParameters {
         this.simulationDate = simulationDate;
     }
 
-    public void setClock(Clock clock) {
-        this.clock = clock;
-    }
-
     public void setTimeSpeed(Double timeSpeed) {
         this.timeSpeed = timeSpeed;
     }
@@ -87,7 +78,6 @@ public class SimulationParameters {
                 "insideTemperature=" + insideTemperature +
                 ", outsideTemperature=" + outsideTemperature +
                 ", simulationDate=" + simulationDate +
-                ", clock=" + clock +
                 ", timeSpeed=" + timeSpeed +
                 '}';
     }

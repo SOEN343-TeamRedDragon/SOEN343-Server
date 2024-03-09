@@ -35,7 +35,6 @@ public class SimulationParametersService {
         existingSimulationParameters.setInsideTemperature(SimulationParameters.getInsideTemperature());
         existingSimulationParameters.setOutsideTemperature(SimulationParameters.getOutsideTemperature());
         existingSimulationParameters.setSimulationDate(SimulationParameters.getSimulationDate());
-        existingSimulationParameters.setClock(SimulationParameters.getClock());
         existingSimulationParameters.setTimeSpeed(SimulationParameters.getTimeSpeed());
         return SimulationParametersRepository.save(existingSimulationParameters);
 

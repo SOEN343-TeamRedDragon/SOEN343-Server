@@ -5,9 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.sql.Time;
 import java.time.Clock;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 
 @Entity
@@ -18,18 +16,17 @@ public class SimulationParameters {
     private Integer id;
     private Double insideTemperature;
     private Double outsideTemperature;
-    private LocalDate simulationDate;
+    private LocalDate dateTime;
     private Double timeSpeed;
 
     public SimulationParameters(Double insideTemperature,
                                 Double outsideTemperature,
-                                LocalDate simulationDate,
-                                Clock clock,
+                                LocalDate dateTime,
                                 Double timeSpeed)
     {
         this.insideTemperature = insideTemperature;
         this.outsideTemperature = outsideTemperature;
-        this.simulationDate = simulationDate;
+        this.dateTime = dateTime;
         this.timeSpeed = timeSpeed;
     }
 
@@ -41,8 +38,8 @@ public class SimulationParameters {
         return outsideTemperature;
     }
 
-    public LocalDate getSimulationDate() {
-        return simulationDate;
+    public LocalDate getDateTime() {
+        return dateTime;
     }
 
 
@@ -60,8 +57,8 @@ public class SimulationParameters {
         this.outsideTemperature = outsideTemperature;
     }
 
-    public void setSimulationDate(LocalDate simulationDate) {
-        this.simulationDate = simulationDate;
+    public void setDateTime(LocalDate dateTime) {
+        this.dateTime = dateTime;
     }
 
     public void setTimeSpeed(Double timeSpeed) {
@@ -77,7 +74,7 @@ public class SimulationParameters {
         return "SimulationParameters{" +
                 "insideTemperature=" + insideTemperature +
                 ", outsideTemperature=" + outsideTemperature +
-                ", simulationDate=" + simulationDate +
+                ", dateTime=" + dateTime +
                 ", timeSpeed=" + timeSpeed +
                 '}';
     }

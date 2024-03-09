@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 public class SimulationParameters {
 
+    private Integer id;
     private Double insideTemperature;
     private Double outsideTemperature;
     private LocalDate simulationDate;
@@ -46,6 +47,8 @@ public class SimulationParameters {
         return timeSpeed;
     }
 
+    public Integer getId() { return id;}
+
     public void setInsideTemperature(Double insideTemperature) {
         this.insideTemperature = insideTemperature;
     }
@@ -64,6 +67,10 @@ public class SimulationParameters {
 
     public void setTimeSpeed(Double timeSpeed) {
         this.timeSpeed = timeSpeed;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Override

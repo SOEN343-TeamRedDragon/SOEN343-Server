@@ -1,6 +1,7 @@
 package dev.TeamRedDragon.SmartHomeSimulator.User;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,5 +39,15 @@ public class UserService {
         existingUser.setPassword(user.getPassword());
         existingUser.setRole(user.getRole());
         return userRepository.save(existingUser);
+    }
+
+    public boolean authenticateUser(String userName, String password) {
+        Optional<User> userOptional = userRepository.findByUserName(userName);
+        if(userOptional.isPresent()){
+            System.out.print(userOptional);
+            User user = userOptional.get();
+            return user.getPassword().equals(password);
+        }
+            return false;
     }
 }

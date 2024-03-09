@@ -22,5 +22,6 @@ public class SimulationParametersController {
     public String addSimulationParameters(@RequestBody SimulationParameters SimulationParameters){
         SimulationParameterService.saveSimulationParameters(SimulationParameters);
         return "Simulation Parameters are sucessfully added!";
+
     }
 }

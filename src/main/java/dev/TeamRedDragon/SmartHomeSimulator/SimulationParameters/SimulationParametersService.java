@@ -1,10 +1,8 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationParameters;
 
-import dev.TeamRedDragon.SmartHomeSimulator.User.User;
-
 import java.util.List;
 
-public class SimulationParameterService {
+public class SimulationParametersService {
 
     private SimulationParametersRepository SimulationParametersRepository;
 

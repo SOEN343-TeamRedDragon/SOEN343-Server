@@ -1,12 +1,20 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationParameters;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.sql.Time;
 import java.time.Clock;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
+@Entity
 public class SimulationParameters {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Double insideTemperature;
     private Double outsideTemperature;

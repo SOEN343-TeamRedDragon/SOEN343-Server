@@ -1,6 +1,5 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationParameters;
 
-import dev.TeamRedDragon.SmartHomeSimulator.User.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,9 +8,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/SimulationParameters")
-public class SimulationParameterController {
+public class SimulationParametersController {
 
-    private SimulationParameterService SimulationParameterService;
+    private SimulationParametersService SimulationParameterService;
 
     @GetMapping("/")
     public List<SimulationParameters> getSimulationParameters(){

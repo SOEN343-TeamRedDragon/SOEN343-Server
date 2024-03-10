@@ -3,7 +3,7 @@ package dev.TeamRedDragon.SmartHomeSimulator.SmartElements;
 public class Door extends SmartElements {
     private int elementId ;
     private String elementType;
-    private boolean isOpen = false;
+    private boolean open = false;
 
     public Door(int elementId, String elementType) {
         this.elementId = elementId;
@@ -19,7 +19,7 @@ public class Door extends SmartElements {
     }
 
     public boolean isOpen() {
-        return isOpen;
+        return open;
     }
 
     @Override
@@ -27,7 +27,7 @@ public class Door extends SmartElements {
         return "Door {" +
                 "elementId = " + elementId +
                 ", elementType = '" + elementType + '\'' +
-                ", isOpen = " + isOpen +
+                ", isOpen = " + open +
                 '}';
     }
 }

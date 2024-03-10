@@ -1,6 +1,7 @@
-package dev.TeamRedDragon.SmartHomeSimulator.Home;
+package dev.TeamRedDragon.SmartHomeSimulator.Utilities;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import java.io.IOException;

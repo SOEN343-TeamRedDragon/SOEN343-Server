@@ -8,24 +8,28 @@
       "roomType": "LivingRoom",
       "smartElements": [
         {
-          "type": "Door",
+          "classType": "Door",
           "elementId": "1",
-          "elementType": "Door"
+          "elementType": "Door",
+          "open": ""
         },
         {
-          "type": "Window",
+          "classType": "Window",
           "elementId": "2",
-          "elementType": "Window"
+          "elementType": "Window",
+          "open": ""
         },
         {
-          "type": "Light",
+          "classType": "Light",
           "elementId": "3",
-          "elementType": "Light"
+          "elementType": "Light",
+          "open": ""
         },
         {
-          "type": "Heater",
+          "classType": "Heater",
           "elementId": "4",
-          "elementType": "Heater"
+          "elementType": "Heater",
+          "open": ""
         }
       ]
     },
@@ -34,23 +38,28 @@
       "roomType": "Kitchen",
       "smartElements": [
         {
-          "type": "Door",
-          "elementId": "1"
+          "classType": "Door",
+          "elementId": "1",
+          "elementType": "Window",
+          "open": ""
         },
         {
-          "type": "Window",
+          "classType": "Window",
           "elementId": "2",
-          "elementType": "Window"
+          "elementType": "Window",
+          "open": ""
         },
         {
-          "type": "Light",
+          "classType": "Light",
           "elementId": "3",
-          "elementType": "Light"
+          "elementType": "Light",
+          "open": ""
         },
         {
-          "type": "Heater",
+          "classType": "Heater",
           "elementId": "4",
-          "elementType": "Heater"
+          "elementType": "Heater",
+          "open": ""
         }
       ]
     },
@@ -59,24 +68,28 @@
       "roomType": "Bedroom",
       "smartElements": [
         {
-          "type": "Door",
+          "classType": "Door",
           "elementId": "1",
-          "elementType": "Door"
+          "elementType": "Door",
+          "open": ""
         },
         {
-          "type": "Window",
+          "classType": "Window",
           "elementId": "2",
-          "elementType": "Window"
+          "elementType": "Window",
+          "open": ""
         },
         {
-          "type": "Light",
+          "classType": "Light",
           "elementId": "3",
-          "elementType": "Light"
+          "elementType": "Light",
+          "open": ""
         },
         {
-          "type": "Heater",
+          "classType": "Heater",
           "elementId": "4",
-          "elementType": "Heater"
+          "elementType": "Heater",
+          "open": ""
         }
       ]
     }

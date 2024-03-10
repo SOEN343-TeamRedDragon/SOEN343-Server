@@ -3,7 +3,7 @@ package dev.TeamRedDragon.SmartHomeSimulator.SmartElements;
 public class Heater extends SmartElements {
     private int elementId ;
     private String elementType;
-    private boolean isOpen = false;
+    private boolean open = false;
 
     public Heater(int elementId, String elementType) {
         this.elementId = elementId;
@@ -19,11 +19,11 @@ public class Heater extends SmartElements {
     }
 
     public boolean isOpen() {
-        return isOpen;
+        return open;
     }
 
     public void setOpen(boolean open) {
-        isOpen = open;
+        this.open = open;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Heater extends SmartElements {
         return "Heater {" +
                 "elementId = " + elementId +
                 ", elementType = '" + elementType + '\'' +
-                ", isOpen = " + isOpen +
+                ", isOpen = " + open +
                 '}';
     }
 }

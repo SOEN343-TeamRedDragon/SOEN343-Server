@@ -1,0 +1,84 @@
+{
+  "homeId": "1",
+  "homeType": "simpleHome",
+  "roomCount": 3,
+  "roomList": [
+    {
+      "roomId": "1",
+      "roomType": "LivingRoom",
+      "smartElements": [
+        {
+          "type": "Door",
+          "elementId": "1",
+          "elementType": "Door"
+        },
+        {
+          "type": "Window",
+          "elementId": "2",
+          "elementType": "Window"
+        },
+        {
+          "type": "Light",
+          "elementId": "3",
+          "elementType": "Light"
+        },
+        {
+          "type": "Heater",
+          "elementId": "4",
+          "elementType": "Heater"
+        }
+      ]
+    },
+    {
+      "roomId": "2",
+      "roomType": "Kitchen",
+      "smartElements": [
+        {
+          "type": "Door",
+          "elementId": "1"
+        },
+        {
+          "type": "Window",
+          "elementId": "2",
+          "elementType": "Window"
+        },
+        {
+          "type": "Light",
+          "elementId": "3",
+          "elementType": "Light"
+        },
+        {
+          "type": "Heater",
+          "elementId": "4",
+          "elementType": "Heater"
+        }
+      ]
+    },
+    {
+      "roomId": "3",
+      "roomType": "Bedroom",
+      "smartElements": [
+        {
+          "type": "Door",
+          "elementId": "1",
+          "elementType": "Door"
+        },
+        {
+          "type": "Window",
+          "elementId": "2",
+          "elementType": "Window"
+        },
+        {
+          "type": "Light",
+          "elementId": "3",
+          "elementType": "Light"
+        },
+        {
+          "type": "Heater",
+          "elementId": "4",
+          "elementType": "Heater"
+        }
+      ]
+    }
+  ]
+}

@@ -140,7 +140,6 @@ public class JsonFileService {
             roomJArray.add(roomObj);
         }
         obj.put("roomList", roomJArray);
-        System.out.println(obj.toJSONString());
         return obj;
     }
 }

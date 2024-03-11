@@ -1,8 +1,10 @@
 package dev.TeamRedDragon.SmartHomeSimulator.User;
 
-
-import java.util.List;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,17 +35,26 @@ public class UserController {
 
     // Login function to authenticate the user.
     @PostMapping("/AuthenticateUser")
-    public ResponseEntity<String> AuthenticateUser(@RequestBody Map<String, String> credentials){
+    public ResponseEntity<Object> AuthenticateUser(@RequestBody Map<String, String> credentials) {
         String userName = credentials.get("userName");
         String password = credentials.get("password");
-        if(userService.authenticateUser(userName, password)){
-            return ResponseEntity.ok("Sign-in successful!");
-        }else{
+
+        Optional<User> userOptional = userService.authenticateUser(userName, password);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            // Create a map to hold user information
+            Map<String, Object> userMap = new HashMap<>();
+            userMap.put("userId", user.getId());
+            userMap.put("userName", user.getUserName());
+            userMap.put("role", user.getRole());
+
+            return ResponseEntity.ok(userMap);
+        } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid Credentials. ");
         }
-
     }
-
 
 
 

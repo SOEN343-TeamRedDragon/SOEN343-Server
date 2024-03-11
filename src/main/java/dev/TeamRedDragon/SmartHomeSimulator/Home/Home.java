@@ -1,17 +1,34 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Home;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import static java.lang.Math.toIntExact;
 
 public class Home {
 
-    private String homeId;
+    private int homeId;
     private String homeType;
     private static Home home;
 
 
-    private String roomCount;
+    private int roomCount;
+
+    public void setRoomList(ArrayList<Room> roomList) {
+        this.roomList = roomList;
+    }
+
     private ArrayList<Room> roomList = new ArrayList<Room>();
 
     private Home(){}
@@ -23,18 +40,30 @@ public class Home {
         return home;
     }
 
-    public String getHomeId() { return homeId;}
+    public int getHomeId() { return homeId;}
 
     public String getHomeType() {
         return homeType;
     }
 
-    public String getRoomCount() {
+    public int getRoomCount() {
         return roomCount;
     }
 
     public ArrayList<Room> getRoomList() {
         return roomList;
+    }
+
+    public void setHomeId(int homeId) {
+        this.homeId = homeId;
+    }
+
+    public void setHomeType(String homeType) {
+        this.homeType = homeType;
+    }
+
+    public void setRoomCount(int roomCount) {
+        this.roomCount = roomCount;
     }
 
     @Override
@@ -45,4 +74,5 @@ public class Home {
                 ", roomCount = '" + roomCount + '\'' +
                 '}';
     }
+
 }

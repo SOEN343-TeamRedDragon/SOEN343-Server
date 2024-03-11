@@ -7,15 +7,19 @@ import java.util.ArrayList;
 public class Room {
     private int roomId;
     private String roomType;
-    private ArrayList<SmartElement> smartElements = new ArrayList<SmartElement>();
+    private ArrayList<SmartElement> smartElementList = new ArrayList<SmartElement>();
 
-    public Room(int roomId, String roomType) {
+    private int elementCount;
+
+    public Room(int roomId, String roomType, ArrayList<SmartElement> smartElementList) {
         this.roomId = roomId;
         this.roomType = roomType;
+        this.smartElementList = smartElementList;
+        this.elementCount = smartElementList.size();
     }
 
-    public ArrayList<SmartElement> getSmartElements() {
-        return smartElements;
+    public ArrayList<SmartElement> getSmartElementList() {
+        return smartElementList;
     }
 
     public int getRoomId() {
@@ -30,10 +34,14 @@ public class Room {
         this.roomId = roomId;
     }
 
+    public int getElementCount() {
+        return elementCount;
+    }
+
     @Override
     public String toString() {
         return "Room {" +
-                "smartElements = " + smartElements +
+                "smartElements = " + smartElementList +
                 ", roomId = " + roomId +
                 ", roomType = '" + roomType + '\'' +
                 '}';

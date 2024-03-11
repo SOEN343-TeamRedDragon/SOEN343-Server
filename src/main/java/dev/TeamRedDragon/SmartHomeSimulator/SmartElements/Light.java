@@ -5,7 +5,7 @@ public class Light extends SmartElements {
     private String elementType;
     private boolean open = false;
 
-    public Light(int elementId, String elementType, boolean isOpen) {
+    public Light(int elementId, String elementType) {
         this.elementId = elementId;
         this.elementType = elementType;
     }

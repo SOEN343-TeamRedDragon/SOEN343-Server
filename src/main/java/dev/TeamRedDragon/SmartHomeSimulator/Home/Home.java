@@ -1,7 +1,7 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Home;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElements.SmartElements;
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElements.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -80,6 +80,8 @@ public class Home {
         for (int i = 0; i < numberOfRooms; i++)
         {
             JSONObject room = (JSONObject) roomArray.get(i);
+
+            // Get the parameters needed by the room constructor
             int roomId = toIntExact((long) room.get("roomId"));
             String roomType = (String) room.get("roomType");
             int elementCount = toIntExact((long) room.get("elementCount"));
@@ -89,13 +91,33 @@ public class Home {
             for (int j = 0; j < elementCount; j++)
             {
                 JSONObject smartElement = (JSONObject) elementArray.get(j);
+
+                // Get the parameters needed by the smartElement constructor
                 String classType = (String) smartElement.get("classType");
                 int elementId = toIntExact((long) smartElement.get("elementId"));
                 String open = (String) smartElement.get("open");
 
+                // Build the smartElement and add it to the arrayList
+                switch (classType)
+                {
+                    case("Door"):
+                        smartELements.add(new Door(elementId, classType));
+                        break;
+                    case("Window"):
+                        smartELements.add(new Window(elementId, classType));
+                        break;
+                    case("Light"):
+                        smartELements.add(new Light(elementId, classType));
+                    case("Heater"):
+                        smartELements.add(new Heater(elementId, classType));
+                }
+
             }
+            // Then you can build a room and feed it the smartElement arrayList just created
+            roomList.add(new Room(roomId, roomType, smartELements));
 
         }
-
+        // Then you can add the roomList to the home object
+        home.setRoomList(roomList);
     }
 }

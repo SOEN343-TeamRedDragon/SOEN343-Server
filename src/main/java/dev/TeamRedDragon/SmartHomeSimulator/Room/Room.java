@@ -9,9 +9,10 @@ public class Room {
     private String roomType;
     private ArrayList<SmartElements> smartElements = new ArrayList<SmartElements>();
 
-    public Room(int roomId, String roomType) {
+    public Room(int roomId, String roomType, ArrayList<SmartElements> smartElements) {
         this.roomId = roomId;
         this.roomType = roomType;
+        this.smartElements = smartElements;
     }
 
     public ArrayList<SmartElements> getSmartElements() {

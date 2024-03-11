@@ -1,20 +1,20 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Room;
 
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElements.SmartElements;
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 
 import java.util.ArrayList;
 
 public class Room {
     private int roomId;
     private String roomType;
-    private ArrayList<SmartElements> smartElements = new ArrayList<SmartElements>();
+    private ArrayList<SmartElement> smartElements = new ArrayList<SmartElement>();
 
     public Room(int roomId, String roomType) {
         this.roomId = roomId;
         this.roomType = roomType;
     }
 
-    public ArrayList<SmartElements> getSmartElements() {
+    public ArrayList<SmartElement> getSmartElements() {
         return smartElements;
     }
 

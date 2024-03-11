@@ -41,13 +41,16 @@ public class UserService {
         return userRepository.save(existingUser);
     }
 
-    public boolean authenticateUser(String userName, String password) {
+    public Optional<User> authenticateUser(String userName, String password) {
         Optional<User> userOptional = userRepository.findByUserName(userName);
-        if(userOptional.isPresent()){
-            System.out.print(userOptional);
+        if (userOptional.isPresent()) {
             User user = userOptional.get();
-            return user.getPassword().equals(password);
+
+            if (user.getPassword().equals(password)) {
+                return Optional.of(user);
+            }
         }
-            return false;
+        return Optional.empty();
     }
+
 }

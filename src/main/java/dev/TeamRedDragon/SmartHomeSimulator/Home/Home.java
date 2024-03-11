@@ -1,7 +1,7 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Home;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElements.*;
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,17 +12,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static java.lang.Math.toIntExact;
 
 public class Home {
 
-    private String homeId;
+    private int homeId;
     private String homeType;
     private static Home home;
 
 
-    private String roomCount;
+    private int roomCount;
 
     public void setRoomList(ArrayList<Room> roomList) {
         this.roomList = roomList;
@@ -30,7 +31,7 @@ public class Home {
 
     private ArrayList<Room> roomList = new ArrayList<Room>();
 
-    public Home(){}
+    private Home(){}
 
     public static Home getHome(){
         if (home == null){
@@ -39,18 +40,30 @@ public class Home {
         return home;
     }
 
-    public String getHomeId() { return homeId;}
+    public int getHomeId() { return homeId;}
 
     public String getHomeType() {
         return homeType;
     }
 
-    public String getRoomCount() {
+    public int getRoomCount() {
         return roomCount;
     }
 
     public ArrayList<Room> getRoomList() {
         return roomList;
+    }
+
+    public void setHomeId(int homeId) {
+        this.homeId = homeId;
+    }
+
+    public void setHomeType(String homeType) {
+        this.homeType = homeType;
+    }
+
+    public void setRoomCount(int roomCount) {
+        this.roomCount = roomCount;
     }
 
     @Override
@@ -63,9 +76,8 @@ public class Home {
     }
 
     public void jsonParser() throws IOException, ParseException {
-        Home home = new Home();
+        Home home = Home.getHome();
         ArrayList<Room> roomList = new ArrayList<>();
-        ArrayList<SmartElements> smartELements = new ArrayList<>();
         int numberOfRooms;
 
         JSONParser parser = new JSONParser();
@@ -76,11 +88,12 @@ public class Home {
         JSONArray roomArray = (JSONArray) data.get("roomList");
 
         numberOfRooms = toIntExact((long) data.get("roomCount"));
+        home.setRoomCount(numberOfRooms);
 
         for (int i = 0; i < numberOfRooms; i++)
         {
             JSONObject room = (JSONObject) roomArray.get(i);
-
+            ArrayList<SmartElement> smartElementList = new ArrayList<>();
             // Get the parameters needed by the room constructor
             int roomId = toIntExact((long) room.get("roomId"));
             String roomType = (String) room.get("roomType");
@@ -96,28 +109,34 @@ public class Home {
                 String classType = (String) smartElement.get("classType");
                 int elementId = toIntExact((long) smartElement.get("elementId"));
                 String open = (String) smartElement.get("open");
+                boolean isOpen = false;
+                if (Objects.equals(open, "True"))
+                    isOpen = true;
+
 
                 // Build the smartElement and add it to the arrayList
                 switch (classType)
                 {
                     case("Door"):
-                        smartELements.add(new Door(elementId, classType));
+                        smartElementList.add(new Door(elementId, classType, isOpen));
                         break;
                     case("Window"):
-                        smartELements.add(new Window(elementId, classType));
+                        smartElementList.add(new Window(elementId, classType, isOpen));
                         break;
                     case("Light"):
-                        smartELements.add(new Light(elementId, classType));
+                        smartElementList.add(new Light(elementId, classType, isOpen));
+                        break;
                     case("Heater"):
-                        smartELements.add(new Heater(elementId, classType));
+                        smartElementList.add(new Heater(elementId, classType, isOpen));
+                        break;
                 }
-
             }
             // Then you can build a room and feed it the smartElement arrayList just created
-            roomList.add(new Room(roomId, roomType, smartELements));
+            roomList.add(new Room(roomId, roomType, smartElementList));
 
         }
         // Then you can add the roomList to the home object
         home.setRoomList(roomList);
+
     }
 }

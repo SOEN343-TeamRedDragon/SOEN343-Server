@@ -42,5 +42,4 @@ public class SimulationParametersService {
         return SimulationParametersRepository.save(existingSimulationParameters);
 
     }
-
 }

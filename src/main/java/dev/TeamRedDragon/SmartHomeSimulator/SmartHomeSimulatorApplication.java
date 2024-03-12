@@ -14,8 +14,7 @@ public class SmartHomeSimulatorApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SmartHomeSimulatorApplication.class, args);
-
-		Home home = Home.getHome();
+		
 		try {
 			JsonFileService.updateHomeObjectFromJSON();
 		} catch (Exception e) {

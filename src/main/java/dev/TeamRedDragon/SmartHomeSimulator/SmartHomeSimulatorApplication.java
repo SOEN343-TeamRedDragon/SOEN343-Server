@@ -1,6 +1,7 @@
 package dev.TeamRedDragon.SmartHomeSimulator;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
+import dev.TeamRedDragon.SmartHomeSimulator.Home.HomeService;
 import dev.TeamRedDragon.SmartHomeSimulator.Utilities.JsonFileService;
 import org.json.simple.parser.ParseException;
 import org.springframework.boot.SpringApplication;

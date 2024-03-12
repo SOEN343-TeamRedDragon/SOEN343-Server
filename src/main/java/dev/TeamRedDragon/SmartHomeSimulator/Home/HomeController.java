@@ -11,17 +11,21 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/HomeController")
 public class HomeController {
 
-    @Autowired
-    private final JsonFileService jsonFileService;
+   // @Autowired
+    //private final JsonFileService jsonFileService;
 
-
+/*
     public HomeController(JsonFileService jsonFileService) {
         this.jsonFileService = jsonFileService;
     }
 
+ */
+
     @GetMapping("/Home")
     public Home getHomeLayout() {
-        return jsonFileService.readJsonFile();
+        Home home = Home.getHome();
+        JsonFileService.updateHomeLayout();
+        return home;
     }
 
     @PostMapping("/Room")

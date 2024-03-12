@@ -1,8 +1,11 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Home;
 
+import dev.TeamRedDragon.SmartHomeSimulator.Command.ToggleCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import org.json.simple.JSONObject;
+
+import java.util.Objects;
 
 public class HomeService {
     static Home home = Home.getHome();
@@ -30,10 +33,22 @@ public class HomeService {
 
     public static SmartElement toggleElementByRoomIdAndElementId(int roomId, int elementId) {
         SmartElement element = getElementByRoomIdAndElementId(roomId, elementId);
-        element.toggle();
+        ToggleCommand toggleCommand = new ToggleCommand(element);
+        element.setCommand(toggleCommand);
+        element.executeCommand();
         return element;
     }
 
+    /*
+    public static Room toggleAllElementsInRoomByRoomIdAndElementType(int roomId, String elementType) {
+        Room room = getRoomById(roomId);
 
+        for(SmartElement element : room.getSmartElementList()) {
+            if (Objects.equals(element.getElementType(), elementType))
+
+        }
+    }
+
+     */
 }
 

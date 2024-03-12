@@ -30,7 +30,7 @@ public class JsonFileService {
     }
 
     public Home readJsonFile() {
-        try (InputStream inputStream = resourceLoader.getResource("classpath:data/simpleHome.json").getInputStream()) {
+        try (InputStream inputStream = resourceLoader.getResource("classpath:data/simpleHomeOriginal.json").getInputStream()) {
             return objectMapper.readValue(inputStream, Home.class);
         } catch (IOException e) {
             throw new RuntimeException("Error reading JSON file", e);
@@ -43,7 +43,7 @@ public class JsonFileService {
         int numberOfRooms;
 
         JSONParser parser = new JSONParser();
-        Reader reader = new FileReader("src/main/resources/data/simpleHome.json");
+        Reader reader = new FileReader("src/main/resources/data/simpleHomeOriginal.json");
         Object jsonobj = parser.parse(reader);
         JSONObject data = (JSONObject) jsonobj;
 

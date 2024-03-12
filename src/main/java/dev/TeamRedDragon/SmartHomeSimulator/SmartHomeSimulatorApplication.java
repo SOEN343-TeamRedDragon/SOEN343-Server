@@ -20,6 +20,5 @@ public class SmartHomeSimulatorApplication {
 		} catch (Exception e) {
 			System.out.println("Error updating home object from home layout file");
 		}
-		JsonFileService.updateHomeLayout();
 	}
 }

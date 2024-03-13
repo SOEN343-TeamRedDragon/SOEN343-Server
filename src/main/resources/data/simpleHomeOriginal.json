@@ -1,7 +1,7 @@
 {
   "homeId": 1,
   "homeType": "simpleHome",
-  "roomCount": 3,
+  "roomCount": 6,
   "roomList": [
     {
       "roomId": 1,
@@ -32,6 +32,9 @@
           "elementType": "Heater",
           "open": ""
         }
+      ],
+      "userCount": 0,
+      "userList": [
       ]
     },
     {
@@ -63,6 +66,9 @@
           "elementType": "Heater",
           "open": ""
         }
+      ],
+      "userCount": 0,
+      "userList": [
       ]
     },
     {
@@ -93,6 +99,101 @@
           "elementId": 4,
           "elementType": "Heater",
           "open": ""
+        }
+      ],
+      "userCount": 0,
+      "userList": [
+      ]
+    },
+    {
+      "roomId": 4,
+      "roomType": "Garage",
+      "elementCount": 4,
+      "smartElements": [
+        {
+          "classType": "Door",
+          "elementId": 1,
+          "elementType": "Door",
+          "open": ""
+        },
+        {
+          "classType": "Window",
+          "elementId": 2,
+          "elementType": "Window",
+          "open": ""
+        },
+        {
+          "classType": "Light",
+          "elementId": 3,
+          "elementType": "Light",
+          "open": ""
+        },
+        {
+          "classType": "Heater",
+          "elementId": 4,
+          "elementType": "Heater",
+          "open": ""
+        }
+      ],
+      "userCount": 0,
+      "userList": [
+      ]
+    },
+    {
+      "roomId": 5,
+      "roomType": "Backyard",
+      "elementCount": 2,
+      "smartElements": [
+        {
+          "classType": "Light",
+          "elementId": 1,
+          "elementType": "Light",
+          "open": ""
+        },
+        {
+          "classType": "Door",
+          "elementId": 2,
+          "elementType": "Door",
+          "open": ""
+        }
+      ],
+      "userCount": 0,
+      "userList": [
+      ]
+    },
+    {
+      "roomId": 6,
+      "roomType": "BuildingEntrance",
+      "elementCount": 3,
+      "smartElements": [
+        {
+          "classType": "Door",
+          "elementId": 1,
+          "elementType": "Door",
+          "open": ""
+        },
+        {
+          "classType": "Window",
+          "elementId": 2,
+          "elementType": "Window",
+          "open": ""
+        },
+        {
+          "classType": "Light",
+          "elementId": 3,
+          "elementType": "Light",
+          "open": ""
+        }
+      ],
+      "userCount": 1,
+      "userList": [
+        {
+          "userId": 1,
+          "name": "Dan",
+          "userName": "DanDuguay",
+          "password": "123",
+          "role": "Parent",
+          "location": "BuildingEntrance"
         }
       ]
     }

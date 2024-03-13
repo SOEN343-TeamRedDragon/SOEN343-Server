@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     public User saveUser(User user){
         return userRepository.save(user);
@@ -24,6 +24,7 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+    public User getUserByUserName(String userName) { return userRepository.findByUserName(userName).orElse(null);}
 
     public String deleteUser(Integer id){
         userRepository.deleteById(id);

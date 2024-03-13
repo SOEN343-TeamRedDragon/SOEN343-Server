@@ -1,6 +1,7 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Room;
 
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
+import dev.TeamRedDragon.SmartHomeSimulator.User.User;
 
 import java.util.ArrayList;
 
@@ -11,11 +12,17 @@ public class Room {
 
     private int elementCount;
 
-    public Room(int roomId, String roomType, ArrayList<SmartElement> smartElementList) {
+    private ArrayList<User> userList = new ArrayList<User>();
+
+    private int userCount;
+
+    public Room(int roomId, String roomType, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
         this.roomId = roomId;
         this.roomType = roomType;
         this.smartElementList = smartElementList;
         this.elementCount = smartElementList.size();
+        this.userList = userList;
+        this.userCount = userList.size();
     }
 
     public ArrayList<SmartElement> getSmartElementList() {
@@ -36,6 +43,14 @@ public class Room {
 
     public int getElementCount() {
         return elementCount;
+    }
+
+    public ArrayList<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(ArrayList<User> usersInRoom) {
+        this.userList = usersInRoom;
     }
 
     @Override

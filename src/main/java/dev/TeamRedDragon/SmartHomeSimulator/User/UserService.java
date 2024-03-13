@@ -24,6 +24,7 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
+
     public String deleteUser(Integer id){
         userRepository.deleteById(id);
         return "User is removed!";
@@ -38,6 +39,7 @@ public class UserService {
         existingUser.setUserName(user.getUserName());
         existingUser.setPassword(user.getPassword());
         existingUser.setRole(user.getRole());
+        existingUser.setLocation(user.getLocation());
         return userRepository.save(existingUser);
     }
 
@@ -52,5 +54,4 @@ public class UserService {
         }
         return Optional.empty();
     }
-
 }

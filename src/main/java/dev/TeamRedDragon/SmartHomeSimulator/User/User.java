@@ -20,15 +20,18 @@ public class User {
     private String password;
     private String role;
 
+    private String location;
+
     public User() {
     }
 
-    public User(Integer id, String name, String userName, String password, String role) {
+    public User(Integer id, String name, String userName, String password, String role, String location) {
         this.id = id;
         this.name = name;
         this.userName = userName;
         this.password = password;
         this.role = role;
+        this.location = location;
     }
 
     public void setId(Integer id) {
@@ -69,6 +72,10 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public String getLocation() { return location;}
+
+    public void setLocation(String location) { this.location = location;}
 
     @Override
     public String toString() {

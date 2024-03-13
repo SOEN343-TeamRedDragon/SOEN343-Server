@@ -1,25 +1,13 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Home;
 
-
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.Utilities.JsonFileService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/HomeController")
 public class HomeController {
-
-   // @Autowired
-    //private final JsonFileService jsonFileService;
-
-/*
-    public HomeController(JsonFileService jsonFileService) {
-        this.jsonFileService = jsonFileService;
-    }
-
- */
 
     @GetMapping("/Home")
     public Home getHomeLayout() {

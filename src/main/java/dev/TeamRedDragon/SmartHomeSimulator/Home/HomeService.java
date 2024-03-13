@@ -39,6 +39,7 @@ public class HomeService {
         return element;
     }
 
+    /*
     public static Room toggleAllElementsInRoomByRoomIdAndElementType(int roomId, String elementType) {
         Room room = getRoomById(roomId);
 
@@ -46,6 +47,9 @@ public class HomeService {
             if (Objects.equals(element.getElementType(), elementType))
 
         }
+
     }
+
+     */
 }
 

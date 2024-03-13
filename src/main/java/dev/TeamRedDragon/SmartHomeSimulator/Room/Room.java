@@ -63,7 +63,7 @@ public class Room {
                 ", roomType = '" + roomType + '\'' +
                 '}';
     }
-
+  
     public boolean isAutoModeEnabled() {
         return autoModeEnabled;
     }

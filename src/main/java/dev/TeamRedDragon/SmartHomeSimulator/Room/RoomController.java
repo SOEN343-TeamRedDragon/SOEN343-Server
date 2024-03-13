@@ -36,8 +36,10 @@ public class RoomController {
     @PostMapping("/ChangeUserLocation")
     public Home changeUserLocationByUserNameAndRoomId(@RequestBody Map<String, String> data) {
         String userName = data.get("userName");
-        String roomId = data.get("roomId");
-       roomService.changeUserLocationByNewRoomIdAndUserName(Integer.parseInt(roomId), userName);
+        String newRoomId = data.get("newRoomId");
+        String oldRoomId = data.get("oldRoomId");
+       roomService.changeUserLocationByNewIdOldIdAndUserName(Integer.parseInt(newRoomId),
+               Integer.parseInt(oldRoomId), userName);
        return Home.getHome();
     }
 

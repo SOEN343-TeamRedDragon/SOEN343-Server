@@ -50,22 +50,9 @@ public class RoomService {
         return room;
     }
 
-    public void changeUserLocationByNewRoomIdAndUserName(int roomId, String userName) {
-        User user = userService.getUserByUserName(userName);
-        for (Room room : home.getRoomList())
-        {
-            if (room.getUserList().contains(user))
-            {
-                room.removeUserFromRoom(user);
-                user.setLocation("");
-            }
-
-            if (room.getRoomId() == roomId)
-            {
-                user.setLocation(room.getRoomType());
-                room.addUserToRoom(user);
-            }
-        }
+    public void changeUserLocationByNewIdOldIdAndUserName(int newRoomId, int oldRoomId, String userName) {
+        removeUserFromRoomByRoomIdAndUserName(oldRoomId, userName);
+        addUserToRoomByRoomIdAndUserName(newRoomId, userName);
     }
 
     public Room addUserToRoomByRoomIdAndUserName(int roomId, String userName) {

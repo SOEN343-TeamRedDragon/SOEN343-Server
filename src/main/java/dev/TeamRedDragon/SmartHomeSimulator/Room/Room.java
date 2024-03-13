@@ -61,4 +61,16 @@ public class Room {
                 ", roomType = '" + roomType + '\'' +
                 '}';
     }
+
+    public void removeUserFromRoom(User user){
+        ArrayList<User> userList = this.getUserList();
+        userList.remove(user);
+        this.setUserList(userList);
+    }
+
+    public void addUserToRoom(User user) {
+        ArrayList<User> userList = this.getUserList();
+        userList.add(user);
+        this.setUserList(userList);
+    }
 }

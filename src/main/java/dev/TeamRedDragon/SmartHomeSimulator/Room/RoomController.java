@@ -31,10 +31,26 @@ public class RoomController {
     }
 
     @PostMapping("/ChangeUserLocation")
-    public Home ChangeUserLocationByUserNameAndRoomId(@RequestBody Map<String, String> data) {
+    public Home changeUserLocationByUserNameAndRoomId(@RequestBody Map<String, String> data) {
         String userName = data.get("userName");
         String roomId = data.get("roomId");
+        roomService.changeUserLocationByNewRoomIdAndUserName(Integer.parseInt(roomId), userName);
+        return Home.getHome();
+    }
 
+    @PostMapping("/RemoveUserFromRoom")
+    public Home removeUserFromRoomByRoomIdAndUserName(@RequestBody Map<String, String> data) {
+        String userName = data.get("userName");
+        String roomId = data.get("roomId");
+        roomService.removeUserFromRoomByRoomIdAndUserName(Integer.parseInt(roomId), userName);
+        return Home.getHome();
+    }
+
+    @PostMapping("AddUserToRoom")
+    public Home addUserToRoomByRoomIdAndUserName(@RequestBody Map<String, String> data) {
+        String userName = data.get("userName");
+        String roomId = data.get("roomId");
+        roomService.addUserToRoomByRoomIdAndUserName(Integer.parseInt(roomId), userName);
         return Home.getHome();
     }
 }

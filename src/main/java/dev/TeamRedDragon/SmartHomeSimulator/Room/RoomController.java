@@ -27,34 +27,31 @@ public class RoomController {
     }
 
     @PostMapping("/ToggleRoom")
-    public Home toggleAllElementsInRoomByRoomIdAndElementType(@RequestBody Map<String, String> data) {
+    public Room toggleAllElementsInRoomByRoomIdAndElementType(@RequestBody Map<String, String> data) {
         String roomId = data.get("roomId");
         String elementType = data.get("elementType");
-        roomService.toggleAllElementsInRoomByRoomIdAndElementType(Integer.parseInt(roomId), elementType);
-        return Home.getHome();
+        return roomService.toggleAllElementsInRoomByRoomIdAndElementType(Integer.parseInt(roomId), elementType);
     }
 
     @PostMapping("/ChangeUserLocation")
     public Home changeUserLocationByUserNameAndRoomId(@RequestBody Map<String, String> data) {
         String userName = data.get("userName");
         String roomId = data.get("roomId");
-        roomService.changeUserLocationByNewRoomIdAndUserName(Integer.parseInt(roomId), userName);
-        return Home.getHome();
+       roomService.changeUserLocationByNewRoomIdAndUserName(Integer.parseInt(roomId), userName);
+       return Home.getHome();
     }
 
     @PostMapping("/RemoveUserFromRoom")
-    public Home removeUserFromRoomByRoomIdAndUserName(@RequestBody Map<String, String> data) {
+    public Room removeUserFromRoomByRoomIdAndUserName(@RequestBody Map<String, String> data) {
         String userName = data.get("userName");
         String roomId = data.get("roomId");
-        roomService.removeUserFromRoomByRoomIdAndUserName(Integer.parseInt(roomId), userName);
-        return Home.getHome();
+        return roomService.removeUserFromRoomByRoomIdAndUserName(Integer.parseInt(roomId), userName);
     }
 
     @PostMapping("AddUserToRoom")
-    public Home addUserToRoomByRoomIdAndUserName(@RequestBody Map<String, String> data) {
+    public Room addUserToRoomByRoomIdAndUserName(@RequestBody Map<String, String> data) {
         String userName = data.get("userName");
         String roomId = data.get("roomId");
-        roomService.addUserToRoomByRoomIdAndUserName(Integer.parseInt(roomId), userName);
-        return Home.getHome();
+        return roomService.addUserToRoomByRoomIdAndUserName(Integer.parseInt(roomId), userName);
     }
 }

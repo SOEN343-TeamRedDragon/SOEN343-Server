@@ -17,11 +17,11 @@ public class HomeController {
         return Home.getHome();
     }
 
-    @PostMapping("/toggleAllElements")
-    public Home toggleAllElementsByType(@RequestBody Map<String, String> data)
+    @PostMapping("/setAllElements")
+    public Home setAllElementsStateByBooleanAndType(@RequestBody Map<String, String> data)
     {
+        String isOpen = data.get("isOpen");
         String elementType = data.get("elementType");
-        homeService.toggleAllElementsByType(elementType);
-        return Home.getHome();
+        return homeService.setAllElementsStateByBooleanAndType(Boolean.valueOf(isOpen), elementType);
     }
 }

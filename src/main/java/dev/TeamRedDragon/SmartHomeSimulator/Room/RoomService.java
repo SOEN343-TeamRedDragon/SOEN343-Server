@@ -67,7 +67,7 @@ public class RoomService {
         }
     }
 
-    public void removeUserFromRoomByRoomIdAndUserName(int roomId, String userName) {
+    public Room removeUserFromRoomByRoomIdAndUserName(int roomId, String userName) {
         User user = userService.getUserByUserName(userName);
         for (Room room : home.getRoomList())
         {
@@ -75,11 +75,13 @@ public class RoomService {
             {
                 room.removeUserFromRoom(user);
                 user.setLocation("");
+                return room;
             }
         }
+        return null;
     }
 
-    public void addUserToRoomByRoomIdAndUserName(int roomId, String userName) {
+    public Room addUserToRoomByRoomIdAndUserName(int roomId, String userName) {
         User user = userService.getUserByUserName(userName);
         for (Room room : home.getRoomList())
         {
@@ -87,7 +89,9 @@ public class RoomService {
             {
                 user.setLocation(room.getRoomType());
                 room.addUserToRoom(user);
+                return room;
             }
         }
+        return null;
     }
 }

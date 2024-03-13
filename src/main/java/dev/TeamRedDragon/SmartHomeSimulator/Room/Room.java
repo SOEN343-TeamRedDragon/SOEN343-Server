@@ -11,6 +11,7 @@ public class Room {
     private ArrayList<SmartElement> smartElementList = new ArrayList<SmartElement>();
 
     private int elementCount;
+    private boolean autoMode = false;
 
     private ArrayList<User> userList = new ArrayList<User>();
 
@@ -74,5 +75,13 @@ public class Room {
         ArrayList<User> userList = this.getUserList();
         userList.add(user);
         this.setUserList(userList);
+    }
+
+    public boolean isAutoMode() {
+        return autoMode;
+    }
+
+    public void setAutoMode(boolean autoMode) {
+        this.autoMode = autoMode;
     }
 }

@@ -2,6 +2,7 @@ package dev.TeamRedDragon.SmartHomeSimulator.Room;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Command.ToggleCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Light;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.User.User;
 import dev.TeamRedDragon.SmartHomeSimulator.User.UserService;
@@ -67,31 +68,50 @@ public class RoomService {
         }
     }
 
-    public Room removeUserFromRoomByRoomIdAndUserName(int roomId, String userName) {
+    public Room addUserToRoomByRoomIdAndUserName(int roomId, String userName) {
         User user = userService.getUserByUserName(userName);
-        for (Room room : home.getRoomList())
-        {
-            if (room.getRoomId() == roomId)
-            {
-                room.removeUserFromRoom(user);
-                user.setLocation("");
+        for (Room room : home.getRoomList()) {
+            if (room.getRoomId() == roomId) {
+                user.setLocation(room.getRoomType());
+                room.addUserToRoom(user);
+                if (room.isAutoMode()) {
+                    toggleLights(room, true);
+                }
                 return room;
             }
         }
         return null;
     }
-
-    public Room addUserToRoomByRoomIdAndUserName(int roomId, String userName) {
+    
+    public Room removeUserFromRoomByRoomIdAndUserName(int roomId, String userName) {
         User user = userService.getUserByUserName(userName);
-        for (Room room : home.getRoomList())
-        {
-            if (room.getRoomId() == roomId)
-            {
-                user.setLocation(room.getRoomType());
-                room.addUserToRoom(user);
+        for (Room room : home.getRoomList()) {
+            if (room.getRoomId() == roomId && room.getUserList().contains(user)) {
+                room.removeUserFromRoom(user);
+                user.setLocation("");
+                if (room.isAutoMode() && room.getUserList().isEmpty()) {
+                    toggleLights(room, false);
+                }
                 return room;
             }
         }
         return null;
+    }
+    
+    private void toggleLights(Room room, boolean turnOn) {
+        for (SmartElement element : room.getSmartElementList()) {
+            if (element instanceof Light) { 
+                element.setIsOpen(turnOn);
+            }
+        }
+    }
+
+    public void setAutoModeForRoom(int roomId, boolean activate) {
+        Room room = getRoomById(roomId);
+        if (room != null) {
+            room.setAutoMode(activate);
+        } else {
+            System.err.println("Room not found.");
+        }
     }
 }

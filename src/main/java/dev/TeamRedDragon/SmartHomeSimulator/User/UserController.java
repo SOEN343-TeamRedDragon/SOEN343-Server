@@ -25,7 +25,8 @@ public class UserController {
 
 
     @PostMapping("/GetUserByUserName")
-    public User getUserByUserName(@RequestBody String userName){
+    public User getUserByUserName(@RequestBody Map<String, String> data){
+        String userName = data.get("userName");
         return userService.getUserByUserName(userName);
     }
 
@@ -51,6 +52,7 @@ public class UserController {
             userMap.put("userId", user.getId());
             userMap.put("userName", user.getUserName());
             userMap.put("role", user.getRole());
+            userMap.put("location", user.getLocation());
 
             return ResponseEntity.ok(userMap);
         } else {

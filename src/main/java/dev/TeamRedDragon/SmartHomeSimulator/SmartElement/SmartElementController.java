@@ -24,11 +24,9 @@ public class SmartElementController {
     }
 
     @PostMapping("/ToggleSmartElement")
-    public Home toggleElementByRoomIdAndElementId(@RequestBody Map<String, String> data) {
+    public SmartElement toggleElementByRoomIdAndElementId(@RequestBody Map<String, String> data) {
         String roomId = data.get("roomId");
         String elementId = data.get("elementId");
-        smartElementService.toggleElementByRoomIdAndElementId(Integer.parseInt(roomId), Integer.parseInt(elementId));
-        return Home.getHome();
+        return smartElementService.toggleElementByRoomIdAndElementId(Integer.parseInt(roomId), Integer.parseInt(elementId));
     }
-
 }

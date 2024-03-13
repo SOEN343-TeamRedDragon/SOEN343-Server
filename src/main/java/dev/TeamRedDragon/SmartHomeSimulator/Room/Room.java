@@ -1,5 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Room;
 
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Light;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.User.User;
 
@@ -11,11 +12,11 @@ public class Room {
     private ArrayList<SmartElement> smartElementList = new ArrayList<SmartElement>();
 
     private int elementCount;
-    private boolean autoMode = false;
 
     private ArrayList<User> userList = new ArrayList<User>();
 
     private int userCount;
+    private boolean autoModeEnabled = false;
 
     public Room(int roomId, String roomType, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
         this.roomId = roomId;
@@ -63,25 +64,33 @@ public class Room {
                 '}';
     }
 
-    public void removeUserFromRoom(User user){
-        ArrayList<User> userList = this.getUserList();
-        System.out.println(userList);
-        userList.remove(user);
-        this.setUserList(userList);
-        System.out.println(this.userList);
+    public boolean isAutoModeEnabled() {
+        return autoModeEnabled;
+    }
+
+    public void setAutoModeEnabled(boolean autoModeEnabled) {
+        this.autoModeEnabled = autoModeEnabled;
+    }
+
+    private void adjustLightsForAutoMode() {
+        if (!autoModeEnabled) {
+            return; 
+        }
+        boolean shouldBeOn = !this.userList.isEmpty();
+        for (SmartElement element : smartElementList) {
+            if (element instanceof Light) {
+                element.setIsOpen(shouldBeOn);
+            }
+        }
     }
 
     public void addUserToRoom(User user) {
-        ArrayList<User> userList = this.getUserList();
-        userList.add(user);
-        this.setUserList(userList);
+        this.userList.add(user);
+        adjustLightsForAutoMode();
     }
 
-    public boolean isAutoMode() {
-        return autoMode;
-    }
-
-    public void setAutoMode(boolean autoMode) {
-        this.autoMode = autoMode;
+    public void removeUserFromRoom(User user) {
+        this.userList.remove(user);
+        adjustLightsForAutoMode();
     }
 }

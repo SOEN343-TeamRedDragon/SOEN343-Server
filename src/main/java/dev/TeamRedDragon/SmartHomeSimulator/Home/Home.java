@@ -1,20 +1,8 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Home;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.ArrayList;
-import java.util.Objects;
 
-import static java.lang.Math.toIntExact;
 
 public class Home {
 

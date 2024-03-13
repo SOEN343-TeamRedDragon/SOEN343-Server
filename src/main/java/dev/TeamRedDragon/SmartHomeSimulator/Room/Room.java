@@ -62,17 +62,4 @@ public class Room {
                 '}';
     }
 
-    public void removeUserFromRoom(User user){
-        ArrayList<User> userList = this.getUserList();
-        System.out.println(userList);
-        userList.remove(user);
-        this.setUserList(userList);
-        System.out.println(this.userList);
-    }
-
-    public void addUserToRoom(User user) {
-        ArrayList<User> userList = this.getUserList();
-        userList.add(user);
-        this.setUserList(userList);
-    }
 }

@@ -49,22 +49,9 @@ public class RoomService {
         return room;
     }
 
-    public void changeUserLocationByNewRoomIdAndUserName(int roomId, String userName) {
-        User user = userService.getUserByUserName(userName);
-        for (Room room : home.getRoomList())
-        {
-            if (room.getUserList().contains(user))
-            {
-                room.removeUserFromRoom(user);
-                user.setLocation("");
-            }
-
-            if (room.getRoomId() == roomId)
-            {
-                user.setLocation(room.getRoomType());
-                room.addUserToRoom(user);
-            }
-        }
+    public void changeUserLocationByNewIdOldIdAndUserName(int newRoomId, int oldRoomId, String userName) {
+        removeUserFromRoomByRoomIdAndUserName(oldRoomId, userName);
+        addUserToRoomByRoomIdAndUserName(newRoomId, userName);
     }
 
     public Room removeUserFromRoomByRoomIdAndUserName(int roomId, String userName) {
@@ -73,8 +60,11 @@ public class RoomService {
         {
             if (room.getRoomId() == roomId)
             {
-                room.removeUserFromRoom(user);
+                ArrayList<User> userList = room.getUserList();
+                userList.remove(user);
                 user.setLocation("");
+                userService.updateUser(user);
+                room.setUserList(userList);
                 return room;
             }
         }
@@ -87,8 +77,11 @@ public class RoomService {
         {
             if (room.getRoomId() == roomId)
             {
+                ArrayList<User> userList = room.getUserList();
                 user.setLocation(room.getRoomType());
-                room.addUserToRoom(user);
+                userList.add(user);
+                room.setUserList(userList);
+                userService.updateUser(user);
                 return room;
             }
         }

@@ -1,7 +1,5 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Home;
 
-import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +14,14 @@ public class HomeController {
 
     @GetMapping("/Home")
     public Home getHomeLayout() {
+        return Home.getHome();
+    }
+
+    @PostMapping("/toggleAllElements")
+    public Home toggleAllElementsByType(@RequestBody Map<String, String> data)
+    {
+        String elementType = data.get("elementType");
+        homeService.toggleAllElementsByType(elementType);
         return Home.getHome();
     }
 }

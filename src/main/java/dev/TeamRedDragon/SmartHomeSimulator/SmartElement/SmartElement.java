@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.Command;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "classType")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Door.class, name = "Door"),
@@ -16,6 +19,7 @@ public abstract class SmartElement {
     protected int elementId;
     protected String elementType;
     protected boolean isOpen;
+    private List<SmartElementObserver> observers = new ArrayList<>();
 
     protected Command command;
 
@@ -54,5 +58,19 @@ public abstract class SmartElement {
     }
     public void toggle(){
         isOpen = !isOpen;
+    }
+
+    public void attach(SmartElementObserver observer) {
+        observers.add(observer);
+    }
+
+    public void detach(SmartElementObserver observer) {
+        observers.remove(observer);
+    }
+
+    protected void notifyObservers() {
+        for (SmartElementObserver observer : observers) {
+            observer.update(this);
+        }
     }
 }

@@ -11,12 +11,28 @@ import java.util.Objects;
 
 @Service
 public class HomeService {
-    static Home home = Home.getHome();
+    private Home home = Home.getHome();
+    ToggleCommand toggleCommand;
+
 
     @Autowired
     private RoomService roomService;
 
-
+    public void toggleAllElementsByType(String elementType)
+    {
+        for (Room room : home.getRoomList())
+        {
+            for (SmartElement element : room.getSmartElementList())
+            {
+                if (Objects.equals(element.getElementType(), elementType))
+                {
+                    toggleCommand = new ToggleCommand(element);
+                    element.setCommand(toggleCommand);
+                    element.executeCommand();
+                }
+            }
+        }
+    }
 
 }
 

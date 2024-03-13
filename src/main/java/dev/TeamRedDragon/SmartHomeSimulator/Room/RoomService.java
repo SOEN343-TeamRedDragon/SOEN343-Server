@@ -14,6 +14,7 @@ import java.util.Objects;
 @Service
 public class RoomService {
     private Home home = Home.getHome();
+    ToggleCommand toggleCommand;
 
     @Autowired
     private UserService userService;
@@ -35,7 +36,7 @@ public class RoomService {
         for(SmartElement element : room.getSmartElementList()) {
             if (Objects.equals(element.getElementType(), elementType))
             {
-                ToggleCommand toggleCommand = new ToggleCommand(element);
+                toggleCommand = new ToggleCommand(element);
                 element.setCommand(toggleCommand);
                 element.executeCommand();
             }

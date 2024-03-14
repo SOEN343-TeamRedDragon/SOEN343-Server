@@ -2,6 +2,7 @@ package dev.TeamRedDragon.SmartHomeSimulator.Room;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Command.ToggleCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Light;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.User.User;
 import dev.TeamRedDragon.SmartHomeSimulator.User.UserService;
@@ -54,34 +55,24 @@ public class RoomService {
         addUserToRoomByRoomIdAndUserName(newRoomId, userName);
     }
 
-    public Room removeUserFromRoomByRoomIdAndUserName(int roomId, String userName) {
+    public Room addUserToRoomByRoomIdAndUserName(int roomId, String userName) {
         User user = userService.getUserByUserName(userName);
-        for (Room room : home.getRoomList())
-        {
-            if (room.getRoomId() == roomId)
-            {
-                ArrayList<User> userList = room.getUserList();
-                userList.remove(user);
-                user.setLocation("");
-                userService.updateUser(user);
-                room.setUserList(userList);
+        for (Room room : home.getRoomList()) {
+            if (room.getRoomId() == roomId) {
+                user.setLocation(room.getRoomType());
+                room.addUserToRoom(user);
                 return room;
             }
         }
         return null;
     }
-
-    public Room addUserToRoomByRoomIdAndUserName(int roomId, String userName) {
+    
+    public Room removeUserFromRoomByRoomIdAndUserName(int roomId, String userName) {
         User user = userService.getUserByUserName(userName);
-        for (Room room : home.getRoomList())
-        {
-            if (room.getRoomId() == roomId)
-            {
-                ArrayList<User> userList = room.getUserList();
-                user.setLocation(room.getRoomType());
-                userList.add(user);
-                room.setUserList(userList);
-                userService.updateUser(user);
+        for (Room room : home.getRoomList()) {
+            if (room.getRoomId() == roomId && room.getUserList().contains(user)) {
+                room.removeUserFromRoom(user);
+                user.setLocation("");
                 return room;
             }
         }

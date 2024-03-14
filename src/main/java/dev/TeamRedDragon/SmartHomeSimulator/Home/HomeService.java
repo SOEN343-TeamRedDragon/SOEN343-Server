@@ -46,7 +46,7 @@ public class HomeService {
             {
                 if (Objects.equals(element.getElementType(), elementType))
                 {
-                    if(element.getIsOpen())
+                    if(!isOpen)
                     {
                         offCommand = new OffCommand(element);
                         element.setCommand(offCommand);

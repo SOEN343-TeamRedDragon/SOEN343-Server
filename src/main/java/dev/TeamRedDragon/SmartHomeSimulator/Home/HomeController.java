@@ -17,7 +17,7 @@ public class HomeController {
         return Home.getHome();
     }
 
-    @PostMapping("/setAllElements")
+    @PostMapping("/SetAllElements")
     public Home setAllElementsStateByBooleanAndType(@RequestBody Map<String, String> data)
     {
         String isOpen = data.get("isOpen");

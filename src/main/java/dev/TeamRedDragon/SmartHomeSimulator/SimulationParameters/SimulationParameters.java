@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.time.Clock;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +12,7 @@ public class SimulationParameters {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer parameterId;
     private Double insideTemperature;
     private Double outsideTemperature;
     private LocalDate dateTime;
@@ -28,6 +27,10 @@ public class SimulationParameters {
         this.outsideTemperature = outsideTemperature;
         this.dateTime = dateTime;
         this.timeSpeed = timeSpeed;
+    }
+
+    public SimulationParameters() {
+
     }
 
     public Double getInsideTemperature() {
@@ -47,7 +50,7 @@ public class SimulationParameters {
         return timeSpeed;
     }
 
-    public Integer getId() { return id;}
+    public Integer getParameterId() { return parameterId;}
 
     public void setInsideTemperature(Double insideTemperature) {
         this.insideTemperature = insideTemperature;
@@ -65,8 +68,8 @@ public class SimulationParameters {
         this.timeSpeed = timeSpeed;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setParameterId(Integer id) {
+        this.parameterId = id;
     }
 
     @Override

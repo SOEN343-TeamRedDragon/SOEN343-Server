@@ -18,26 +18,27 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @PostMapping("/AddUser")
+    public String addUser(@RequestBody User user){
+        userService.saveUser(user);
+        return "User is sucessfully added!";
+    }
+
     @GetMapping
     public List<User> getUsers(){
         return userService.getUsers();
     }
 
-    @DeleteMapping("/DeleteUser")
-    public ResponseEntity<Object> removeUser(@RequestBody User user){
-        int userId = user.getId();
-        String response = userService.deleteUser(userId);
-        return ResponseEntity.ok(response);
+    @PostMapping("/GetUserById")
+    public User getUserByUserId(@RequestBody Map<String, String> data) {
+        String id = data.get("userId");
+        return userService.getUserById(Integer.parseInt(id));
     }
+
     @PostMapping("/GetUserByUserName")
     public User getUserByUserName(@RequestBody Map<String, String> data){
         String userName = data.get("userName");
         return userService.getUserByUserName(userName);
-    }
-
-    @PostMapping("/AddUser")
-    public User addUser(@RequestBody User user){
-        return userService.saveUser(user);
     }
 
     // Login function to authenticate the user.
@@ -74,5 +75,18 @@ public class UserController {
         }
         else
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+    }
+
+    @DeleteMapping("/DeleteUser")
+    public ResponseEntity<Object> DeleteUserById(@RequestBody Map<String, String> data) {
+        String Id = data.get("id");
+        if (userService.getUserById(Integer.parseInt(Id)) != null)
+        {
+            userService.deleteUser(Integer.parseInt(Id));
+            return ResponseEntity.status(HttpStatus.OK).body("User deleted. ");
+        }
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+
     }
 }

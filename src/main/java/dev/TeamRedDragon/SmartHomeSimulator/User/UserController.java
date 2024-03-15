@@ -41,8 +41,6 @@ public class UserController {
         return userService.getUserByUserName(userName);
     }
 
-
-
     // Login function to authenticate the user.
     @PostMapping("/AuthenticateUser")
     public ResponseEntity<Object> AuthenticateUser(@RequestBody Map<String, String> credentials) {

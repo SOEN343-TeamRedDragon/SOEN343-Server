@@ -28,7 +28,7 @@ public class SimulationParametersService {
     public SimulationParameters updateSimulationParameters(SimulationParameters SimulationParameters){
         SimulationParameters existingSimulationParameters = SimulationParametersRepository
                 .findById(SimulationParameters
-                .getId()).
+                .getParameterId()).
                 orElse(null);
 
         if (existingSimulationParameters == null){

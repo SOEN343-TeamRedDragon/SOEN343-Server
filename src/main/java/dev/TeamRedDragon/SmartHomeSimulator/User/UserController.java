@@ -23,7 +23,12 @@ public class UserController {
         return userService.getUsers();
     }
 
-
+    @DeleteMapping("/DeleteUser")
+    public ResponseEntity<Object> removeUser(@RequestBody User user){
+        int userId = user.getId();
+        String response = userService.deleteUser(userId);
+        return ResponseEntity.ok(response);
+    }
     @PostMapping("/GetUserByUserName")
     public User getUserByUserName(@RequestBody Map<String, String> data){
         String userName = data.get("userName");
@@ -31,9 +36,8 @@ public class UserController {
     }
 
     @PostMapping("/AddUser")
-    public String addUser(@RequestBody User user){
-        userService.saveUser(user);
-        return "User is sucessfully added!";
+    public User addUser(@RequestBody User user){
+        return userService.saveUser(user);
     }
 
     // Login function to authenticate the user.

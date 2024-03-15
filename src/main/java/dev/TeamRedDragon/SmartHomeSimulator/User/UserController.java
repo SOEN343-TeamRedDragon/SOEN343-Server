@@ -18,11 +18,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @PostMapping("/AddUser")
+    public String addUser(@RequestBody User user){
+        userService.saveUser(user);
+        return "User is sucessfully added!";
+    }
+
     @GetMapping
     public List<User> getUsers(){
         return userService.getUsers();
     }
-
 
     @PostMapping("/GetUserByUserName")
     public User getUserByUserName(@RequestBody Map<String, String> data){
@@ -30,11 +35,7 @@ public class UserController {
         return userService.getUserByUserName(userName);
     }
 
-    @PostMapping("/AddUser")
-    public String addUser(@RequestBody User user){
-        userService.saveUser(user);
-        return "User is sucessfully added!";
-    }
+
 
     // Login function to authenticate the user.
     @PostMapping("/AuthenticateUser")
@@ -70,5 +71,18 @@ public class UserController {
         }
         else
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+    }
+
+    @DeleteMapping("/DeleteUser")
+    public ResponseEntity<Object> DeleteUserById(@RequestBody Map<String, String> data) {
+        String Id = data.get("id");
+        if (userService.getUserById(Integer.parseInt(Id)) != null)
+        {
+            userService.deleteUser(Integer.parseInt(Id));
+            return ResponseEntity.status(HttpStatus.OK).body("User deleted. ");
+        }
+        else
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+
     }
 }

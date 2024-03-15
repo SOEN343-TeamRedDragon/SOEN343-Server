@@ -20,7 +20,7 @@ public class RoomController {
         return roomService.getRooms();
     }
 
-    @PostMapping("/Room")
+    @PostMapping("/GetById")
     public Room getRoomById(@RequestBody Map<String, String> data) {
         String roomId = data.get("roomId");
         return roomService.getRoomById(Integer.parseInt(roomId));

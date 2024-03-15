@@ -29,6 +29,12 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @PostMapping("/GetUserById")
+    public User getUserByUserId(@RequestBody Map<String, String> data) {
+        String id = data.get("userId");
+        return userService.getUserById(Integer.parseInt(id));
+    }
+
     @PostMapping("/GetUserByUserName")
     public User getUserByUserName(@RequestBody Map<String, String> data){
         String userName = data.get("userName");

@@ -66,6 +66,24 @@ class UserControllerTest {
 
     @Test
     @Order(3)
+    void getUsersById() throws Exception {
+        // Arrange
+        int id = userService.getUserByUserName(testUserName).getId();
+        obj.put("userId",id );
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/User/GetUserById")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.userName").value(testUserName))
+                .andExpect(jsonPath("$.id").exists());
+    }
+
+    @Test
+    @Order(4)
     void getUserByUserName() throws Exception {
         // Arrange
         obj.put("userName",testUserName);
@@ -84,7 +102,7 @@ class UserControllerTest {
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void authenticateUser() throws Exception {
         // Arrange
         obj.put("userName",testUserName);
@@ -101,7 +119,7 @@ class UserControllerTest {
     }
 
     @Test
-    @Order(5)
+    @Order(6)
     void updateUser() throws Exception {
         // Arrange
         int id = userService.getUserByUserName(testUserName).getId();
@@ -123,7 +141,7 @@ class UserControllerTest {
     }
 
     @Test
-    @Order(6)
+    @Order(7)
     void deleteUserById() throws  Exception {
         // Arrange
         int id = userService.getUserByUserName(testUserName).getId();

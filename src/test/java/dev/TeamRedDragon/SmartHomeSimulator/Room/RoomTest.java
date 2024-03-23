@@ -16,7 +16,7 @@ class RoomTest {
 
     @BeforeEach
     void setUp() {
-        room = new Room(1, "Living Room", new ArrayList<>(), new ArrayList<>());
+        room = new Room(1, 1, "Living Room", new ArrayList<>(), new ArrayList<>());
         user = new User(1, "John Doe", "johndoe", "password", "user", "Living Room");
     }
 

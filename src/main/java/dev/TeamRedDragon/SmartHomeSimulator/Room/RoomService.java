@@ -36,6 +36,16 @@ public class RoomService {
         return null;
     }
 
+    public  Room getZoneById(int zoneId) {
+
+        for (Room room : home.getRoomList()) {
+            if (room.getZoneId() == zoneId)
+                return room;
+        }
+        System.err.println("Error finding room by Zone Id.");
+        return null;
+    }
+
     public Room toggleAllElementsInRoomByRoomIdAndElementType(int roomId, String elementType) {
         Room room = getRoomById(roomId);
 

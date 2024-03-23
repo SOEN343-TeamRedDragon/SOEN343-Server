@@ -4,7 +4,7 @@ import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Light;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.SmartElementObserver;
 
-public class SmartHomeCoreFuntionnality implements SmartElementObserver {
+public class SmartHomeCoreFunctionality implements SmartElementObserver {
 
    // Observer pattern for update method for lights - need to add windows
     @Override

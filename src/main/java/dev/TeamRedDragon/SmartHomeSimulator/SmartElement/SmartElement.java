@@ -3,6 +3,7 @@ package dev.TeamRedDragon.SmartHomeSimulator.SmartElement;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.Command;
+import dev.TeamRedDragon.SmartHomeSimulator.Observer.SmartElementObserver;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,10 +1,12 @@
-package dev.TeamRedDragon.SmartHomeSimulator.ObserverModules;
+package dev.TeamRedDragon.SmartHomeSimulator.Modules;
 
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Heater;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElementObserver;
+import dev.TeamRedDragon.SmartHomeSimulator.Observer.SmartElementObserver;
 
-public class HeaterModule implements SmartElementObserver {
+public class SmartHeatingModule implements SmartElementObserver {
+
+    // Observer pattern for update method for heating
     @Override
     public void update(SmartElement element) {
         if (element instanceof Heater) {

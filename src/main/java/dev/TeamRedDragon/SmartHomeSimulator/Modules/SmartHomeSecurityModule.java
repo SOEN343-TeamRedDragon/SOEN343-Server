@@ -1,11 +1,11 @@
-package dev.TeamRedDragon.SmartHomeSimulator.ObserverModules;
+package dev.TeamRedDragon.SmartHomeSimulator.Modules;
 
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Door;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElementObserver;
+import dev.TeamRedDragon.SmartHomeSimulator.Observer.SmartElementObserver;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
 
-public class SecurityModule implements SmartElementObserver {
+public class SmartHomeSecurityModule implements SmartElementObserver {
     @Override
     public void update(SmartElement element) {
         if (element instanceof Door) {

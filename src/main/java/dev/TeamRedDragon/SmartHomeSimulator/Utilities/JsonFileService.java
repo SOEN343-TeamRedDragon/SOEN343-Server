@@ -97,6 +97,9 @@ public class JsonFileService {
                     case("Heater"):
                         smartElementList.add(new Heater(elementId, classType, isOpen));
                         break;
+                    case("AirConditioner"):
+                        smartElementList.add(new AirConditioner(elementId, classType, isOpen));
+                        break;
                 }
             }
 

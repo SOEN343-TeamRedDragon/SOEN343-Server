@@ -6,7 +6,7 @@
     {
       "roomId": 1,
       "roomType": "LivingRoom",
-      "elementCount": 4,
+      "elementCount": 5,
       "smartElements": [
         {
           "classType": "Door",
@@ -30,6 +30,12 @@
           "classType": "Heater",
           "elementId": 4,
           "elementType": "Heater",
+          "open": ""
+        },
+        {
+          "classType": "AirConditioner",
+          "elementId": 5,
+          "elementType": "AirConditioner",
           "open": ""
         }
       ],

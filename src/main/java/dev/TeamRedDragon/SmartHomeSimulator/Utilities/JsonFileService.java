@@ -39,8 +39,6 @@ public class JsonFileService {
         }
     }
 
-
-
     public static void updateHomeObjectFromJSON() throws IOException, ParseException {
         Home home = Home.getHome();
         ArrayList<Room> roomList = new ArrayList<>();

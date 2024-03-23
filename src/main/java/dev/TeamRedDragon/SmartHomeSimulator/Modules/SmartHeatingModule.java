@@ -84,7 +84,6 @@ public class SmartHeatingModule implements SmartElementObserver {
 
 
 
-
     // Observer pattern for update method for heating
     @Override
     public void update(SmartElement element) {

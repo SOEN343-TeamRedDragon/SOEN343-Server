@@ -18,9 +18,8 @@ public class Room {
     private int userCount;
     private boolean autoModeEnabled = false;
 
-    public Room(int roomId, int zoneId, String roomType, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
+    public Room(int roomId, String roomType, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
         this.roomId = roomId;
-        this.zoneId = zoneId;
         this.roomType = roomType;
         this.smartElementList = smartElementList;
         this.elementCount = smartElementList.size();
@@ -47,10 +46,6 @@ public class Room {
     public int getElementCount() {
         return elementCount;
     }
-
-    public int getZoneId() { return zoneId; }
-
-    public void setZoneId(int zoneId) { this.zoneId = zoneId;}
 
     public ArrayList<User> getUserList() {
         return userList;

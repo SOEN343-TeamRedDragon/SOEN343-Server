@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Room {
     private int roomId;
-    private int zoneId;
     private String roomType;
     private ArrayList<SmartElement> smartElementList = new ArrayList<SmartElement>();
 

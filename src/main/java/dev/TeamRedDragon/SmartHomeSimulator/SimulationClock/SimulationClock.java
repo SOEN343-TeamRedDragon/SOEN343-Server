@@ -1,8 +1,13 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationClock;
 
-import java.time.LocalDateTime;
+import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observable;
+import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 
-public class SimulationClock {
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+public class SimulationClock implements Observable {
+    private ArrayList<Observer> observers = new ArrayList<>();
 
     private static double timeSpeed = 1.0;
 
@@ -28,7 +33,7 @@ public class SimulationClock {
 
     public String getTime() {return this.time;}
 
-    public static Runnable clockRunnable = new Runnable() {
+    public Runnable clockRunnable = new Runnable() {
 
         LocalDateTime currentDateTime = LocalDateTime.now();
         int year = currentDateTime.getYear();
@@ -81,8 +86,10 @@ public class SimulationClock {
                             month += 1;
                     } else
                         day += 1;
-                } else
+                } else {
                     hour += 1;
+                    notifyObservers();
+                }
             } else
                 min += 1;
 
@@ -104,5 +111,21 @@ public class SimulationClock {
         }
     };
 
+    @Override
+    public void subscribe(Observer observer) {
+        this.observers.add(observer);
+    }
 
+    @Override
+    public void unsubscribe(Observer observer) {
+        this.observers.remove(observer);
+
+    }
+
+    public void notifyObservers() {
+        for (Observer ob : observers)
+        {
+            ob.update();
+        }
+    }
 }

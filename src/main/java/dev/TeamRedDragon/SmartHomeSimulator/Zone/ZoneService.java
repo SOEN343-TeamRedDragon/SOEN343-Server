@@ -3,6 +3,8 @@ package dev.TeamRedDragon.SmartHomeSimulator.Zone;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
+import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.RoomService;
 
 import java.util.ArrayList;
@@ -49,6 +51,18 @@ public class ZoneService {
             detailedZoneInfo.add(zone);
         }
         return detailedZoneInfo;
+    }
+
+    public List<Zone> getZones() {
+        if (zones.isEmpty()) {
+            Home home = Home.getHome();
+            for (Room room : home.getRoomList()) {
+                Zone zone = new Zone(1, 19, 18, 17);
+                zone.addRoom(room.getRoomId());
+                zones.add(zone);
+            }
+        }
+        return zones;
     }
 
     public Zone updateZoneTemperature(int zoneId, String timeOfDay, double newTemperature) {

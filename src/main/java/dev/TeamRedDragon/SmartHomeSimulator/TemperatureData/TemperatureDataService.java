@@ -14,7 +14,6 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class TemperatureDataService {
 
-    TemperatureDataService TemperatureDataService;
     static SimulationClockService SimulationClockService = new SimulationClockService();
 
     static ArrayList<TemperatureData> csvTemperatureData = new ArrayList<>();
@@ -189,7 +188,7 @@ public class TemperatureDataService {
     }
 
 
-    public double getTemperatureFromClockAndTemperatureData() {
+    public static double getTemperatureFromClockAndTemperatureData() {
 
         // Works with hard coded
 
@@ -215,8 +214,8 @@ public class TemperatureDataService {
         return 0;
     }
 
-    public boolean IsCoolerOutside(Room room){
-        if (room.getTemperature() > TemperatureDataService.getTemperatureFromClockAndTemperatureData()){
+    public static boolean IsCoolerOutside(Room room){
+        if (room.getTemperature() > getTemperatureFromClockAndTemperatureData()){
             return true;
         }
         return false;

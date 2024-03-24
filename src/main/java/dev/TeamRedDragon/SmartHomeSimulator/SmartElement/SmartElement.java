@@ -17,6 +17,14 @@ import java.util.List;
 
 })
 
+enum ELEMENT_TYPE {
+    LIGHT,
+    DOOR,
+    WINDOW,
+    AIR_CONDITIONER,
+    HEATER
+}
+
 public abstract class SmartElement {
     protected int elementId;
     protected String elementType;

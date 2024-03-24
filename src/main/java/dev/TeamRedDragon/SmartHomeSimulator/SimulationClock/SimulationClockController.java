@@ -28,13 +28,8 @@ public class SimulationClockController {
 
     @PostMapping("/Stop")
     public ResponseEntity<Object> stopSimulationClock() {
-        simulationClockService.updateTimeSpeed(0);
+        simulationClockService.stopClock();
         return ResponseEntity.status(HttpStatus.OK).body("Clock Stopped.");
     }
 
-    @PostMapping("/Start")
-    public ResponseEntity<Object> startSimulationClock() {
-        simulationClockService.updateTimeSpeed(1);
-        return ResponseEntity.status(HttpStatus.OK).body("Clock Started.");
-    }
 }

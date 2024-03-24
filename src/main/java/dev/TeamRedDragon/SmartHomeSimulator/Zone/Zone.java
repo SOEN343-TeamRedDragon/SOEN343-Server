@@ -9,7 +9,7 @@ public class Zone {
     private double amTemp;
     private double pmTemp;
     private double nightTemp;
-    private ArrayList<Room> roomList;
+    private ArrayList<Integer> roomList;
 
     public Zone(double zoneId, double amTemp, double pmTemp, double nightTemp) {
         this.zoneId = zoneId;
@@ -23,22 +23,20 @@ public class Zone {
         return zoneId;
     }
 
-    public ArrayList<Room> getRoomList() {
+    public ArrayList<Integer> getRoomList() {
         return roomList;
     }
 
-    public void setRoomList(ArrayList<Room> roomList) {
+    public void setRoomList(ArrayList<Integer> roomList) {
         this.roomList = roomList;
     }
 
     public void addRoom(int roomId) {
-        Room room = Home.getHome().getRoomById(roomId);
-        roomList.add(room);
+        roomList.add(roomId);
     }
 
     public void removeRoom(int roomId) {
-        Room room = Home.getHome().getRoomById(roomId);
-        roomList.remove(room);
+        roomList.remove(roomId);
     }
 
     public String toString() {

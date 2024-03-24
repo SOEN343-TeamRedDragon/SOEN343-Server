@@ -15,7 +15,7 @@ public class ZoneService {
         return zone;
     }
 
-    public Zone addRoomToZoneByZoneIdAndRoomId(int zoneId, int roomId) {
+    public Zone addRoomToZoneByZoneIdAndRoomId(double zoneId, int roomId) {
         for (Zone zone : zones) {
             if (zone.getZoneId() == zoneId) {
                 zone.addRoom(roomId);
@@ -23,5 +23,51 @@ public class ZoneService {
             }
         }
         return null;
+    }
+
+    public Zone removeRoomFromZoneByZoneIdAndRoomId(double zoneId, int roomId) {
+        for (Zone zone : zones) {
+            if (zone.getZoneId() == zoneId) {
+                zone.removeRoom(roomId);
+                return zone;
+            }
+        }
+        return null;
+    }
+
+    public List<String> getZonesDetailedInfo() {
+        List<String> detailedZoneInfo = new ArrayList<>();
+        for (Zone zone : zones) {
+            detailedZoneInfo.add(zone.toString());
+        }
+        return detailedZoneInfo;
+    }
+
+    public Zone updateZoneTemperature(int zoneId, String timeOfDay, double newTemperature) {
+        Zone zoneToUpdate = null;
+        for (Zone zone : zones) {
+            if (zone.getZoneId() == zoneId) {
+                zoneToUpdate = zone;
+                break;
+            }
+        }
+        if (zoneToUpdate == null) {
+            return null;
+        }
+
+        switch (timeOfDay) {
+            case "AM":
+                zoneToUpdate.setAmTemp(newTemperature);
+                break;
+            case "PM":
+                zoneToUpdate.setPmTemp(newTemperature);
+                break;
+            case "NIGHT":
+                zoneToUpdate.setNightTemp(newTemperature);
+                break;
+            default:
+                return null;
+        }
+        return zoneToUpdate;
     }
 }

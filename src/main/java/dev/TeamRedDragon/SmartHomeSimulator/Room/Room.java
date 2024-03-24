@@ -13,14 +13,20 @@ public class Room {
 
     private int elementCount;
 
+    private double temperature;
+
+    private int zoneId;
+
     private ArrayList<User> userList = new ArrayList<User>();
 
     private int userCount;
     private boolean autoModeEnabled = false;
 
-    public Room(int roomId, String roomType, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
+    public Room(int roomId, String roomType,double temperature, int zoneId, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
         this.roomId = roomId;
+        this.zoneId = zoneId;
         this.roomType = roomType;
+        this.temperature = temperature;
         this.smartElementList = smartElementList;
         this.elementCount = smartElementList.size();
         this.userList = userList;
@@ -89,8 +95,25 @@ public class Room {
         adjustLightsForAutoMode();
     }
 
+
     public void removeUserFromRoom(User user) {
         this.userList.remove(user);
         adjustLightsForAutoMode();
+    }
+
+    public double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+    }
+
+    public int getZoneId() {
+        return zoneId;
+    }
+
+    public void setZoneId(int zoneId) {
+        this.zoneId = zoneId;
     }
 }

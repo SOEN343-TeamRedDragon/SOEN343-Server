@@ -80,4 +80,14 @@ public class RoomService {
         return null;
     }
 
+    public Room setZoneIdByRoomId(int zoneId, int roomId) {
+        for (Room room : home.getRoomList()) {
+            if (room.getRoomId() == roomId) {
+                room.setZoneId(zoneId);
+                return room;
+            }
+        }
+        return null;
+    }
+
 }

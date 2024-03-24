@@ -14,11 +14,11 @@ public class ZoneController {
     private ZoneService zoneService;
  
     @PostMapping("/CreateZone")
-    public Zone createZone(@RequestBody Map<String, Double> data) {
-        double zoneId = data.get("zoneId");
-        double amTemp = data.get("amTemp");
-        double pmTemp = data.get("pmTemp");
-        double nightTemp = data.get("nightTemp");
+    public Zone createZone(@RequestBody Map<String, String> data) {
+        double zoneId = Double.parseDouble(data.get("zone"));
+        double amTemp = Double.parseDouble(data.get("AM"));
+        double pmTemp = Double.parseDouble(data.get("PM"));
+        double nightTemp = Double.parseDouble(data.get("NIGHT"));
         return zoneService.createZone(zoneId, amTemp, pmTemp, nightTemp);
     }
 
@@ -37,7 +37,7 @@ public class ZoneController {
     }
 
     @GetMapping("/GetZones")
-    public List<String> getZones() {
+    public List<Zone> getZones() {
         return zoneService.getZonesDetailedInfo();
     }
 

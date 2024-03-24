@@ -35,10 +35,10 @@ public class ZoneService {
         return null;
     }
 
-    public List<String> getZonesDetailedInfo() {
-        List<String> detailedZoneInfo = new ArrayList<>();
+    public List<Zone> getZonesDetailedInfo() {
+        List<Zone> detailedZoneInfo = new ArrayList<>();
         for (Zone zone : zones) {
-            detailedZoneInfo.add(zone.toString());
+            detailedZoneInfo.add(zone);
         }
         return detailedZoneInfo;
     }

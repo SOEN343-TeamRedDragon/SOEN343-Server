@@ -26,6 +26,9 @@ public class RoomController {
         return roomService.getRoomById(Integer.parseInt(roomId));
     }
 
+
+
+
     @PostMapping("/ToggleRoom")
     public Room toggleAllElementsInRoomByRoomIdAndElementType(@RequestBody Map<String, String> data) {
         String roomId = data.get("roomId");

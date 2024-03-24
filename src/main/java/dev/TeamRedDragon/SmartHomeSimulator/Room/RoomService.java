@@ -36,6 +36,7 @@ public class RoomService {
         return null;
     }
 
+
     public Room toggleAllElementsInRoomByRoomIdAndElementType(int roomId, String elementType) {
         Room room = getRoomById(roomId);
 

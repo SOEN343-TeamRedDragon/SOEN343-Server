@@ -5,8 +5,9 @@
   "roomList": [
     {
       "roomId": 1,
+      "zoneId": 1,
       "roomType": "LivingRoom",
-      "elementCount": 4,
+      "elementCount": 5,
       "smartElements": [
         {
           "classType": "Door",
@@ -31,6 +32,12 @@
           "elementId": 4,
           "elementType": "Heater",
           "open": ""
+        },
+        {
+          "classType": "AirConditioner",
+          "elementId": 5,
+          "elementType": "AirConditioner",
+          "open": ""
         }
       ],
       "userCount": 0,
@@ -39,6 +46,7 @@
     },
     {
       "roomId": 2,
+      "zoneId": 1,
       "roomType": "Kitchen",
       "elementCount": 4,
       "smartElements": [
@@ -73,6 +81,7 @@
     },
     {
       "roomId": 3,
+      "zoneId": 1,
       "roomType": "Bedroom",
       "elementCount": 4,
       "smartElements": [
@@ -107,6 +116,7 @@
     },
     {
       "roomId": 4,
+      "zoneId": 1,
       "roomType": "Garage",
       "elementCount": 4,
       "smartElements": [
@@ -141,6 +151,7 @@
     },
     {
       "roomId": 5,
+      "zoneId": 1,
       "roomType": "Backyard",
       "elementCount": 2,
       "smartElements": [
@@ -163,6 +174,7 @@
     },
     {
       "roomId": 6,
+      "zoneId": 1,
       "roomType": "BuildingEntrance",
       "elementCount": 3,
       "smartElements": [

@@ -13,7 +13,9 @@ import java.util.List;
         @JsonSubTypes.Type(value = Door.class, name = "Door"),
         @JsonSubTypes.Type(value = Heater.class, name = "Heater"),
         @JsonSubTypes.Type(value = Light.class, name = "Light"),
-        @JsonSubTypes.Type(value = Window.class, name = "Window")
+        @JsonSubTypes.Type(value = Window.class, name = "Window"),
+        @JsonSubTypes.Type(value = AirConditioner.class, name = "AirConditioner")
+
 })
 
 public abstract class SmartElement {

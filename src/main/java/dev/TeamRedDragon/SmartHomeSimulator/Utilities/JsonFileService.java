@@ -62,6 +62,7 @@ public class JsonFileService {
             // Get the parameters needed by the room constructor
             int roomId = toIntExact((long) roomObj.get("roomId"));
             String roomType = (String) roomObj.get("roomType");
+            double temperature = (double) roomObj.get("temperature");
             int elementCount = toIntExact((long) roomObj.get("elementCount"));
             JSONArray elementArray = (JSONArray) roomObj.get("smartElements");
             int userCount = toIntExact((long) roomObj.get("userCount"));
@@ -119,8 +120,7 @@ public class JsonFileService {
                 userList.add(new User(userId, name, userName, password, role, location));
             }
             // Then you can build a room and feed it the smartElement arrayList just created
-            roomList.add(new Room(roomId, roomType, smartElementList, userList));
-
+            roomList.add(new Room(roomId, roomType,temperature, smartElementList, userList));
         }
         // Then you can add the roomList to the home object
         home.setRoomList(roomList);

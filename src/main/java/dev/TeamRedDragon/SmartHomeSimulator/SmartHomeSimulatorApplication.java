@@ -1,6 +1,5 @@
 package dev.TeamRedDragon.SmartHomeSimulator;
 
-import TemperatureData.TemperatureDataService;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClock;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
 import org.springframework.boot.SpringApplication;
@@ -20,8 +19,6 @@ public class SmartHomeSimulatorApplication {
 		// Start Simulation Clock
 		SimulationClockService.startClock();
 
-		Double temp = TemperatureDataService.getTemperatureFromClockAndTemperatureData();
-		System.out.println(temp);
 
 	}
 

@@ -1,4 +1,4 @@
-package TemperatureData;
+package dev.TeamRedDragon.SmartHomeSimulator.TemperatureData;
 
 public class TemperatureData {
 

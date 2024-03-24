@@ -1,4 +1,4 @@
-package TemperatureData;
+package dev.TeamRedDragon.SmartHomeSimulator.TemperatureData;
 
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
 import org.springframework.stereotype.Service;
@@ -187,11 +187,12 @@ public class TemperatureDataService {
     }
 
 
-    public static double getTemperatureFromClockAndTemperatureData() {
+    public double getTemperatureFromClockAndTemperatureData() {
 
         // Works with hard coded
 
-        String clockTime = "2024-03-24 15:00";
+        //String clockTime = "2024-03-24 15:00";
+        String clockTime = SimulationClockService.getSimulationClockTime();
 
         List<String> splitClockInput = Arrays.asList(clockTime.split("\\s+"));
         String clockDateSplit = splitClockInput.get(0).substring(4, 10);

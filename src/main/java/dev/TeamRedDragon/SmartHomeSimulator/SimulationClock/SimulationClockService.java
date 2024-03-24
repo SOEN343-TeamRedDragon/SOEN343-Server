@@ -40,5 +40,7 @@ public class SimulationClockService {
 
     public boolean getIsStarted() {return isStarted;}
 
+    public String getTime() { return simulationClock.getTime();}
+
 
 }

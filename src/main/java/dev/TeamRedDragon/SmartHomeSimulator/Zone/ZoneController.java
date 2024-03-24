@@ -38,7 +38,7 @@ public class ZoneController {
 
     @GetMapping("/GetZones")
     public List<Zone> getZones() {
-        return zoneService.getZonesDetailedInfo();
+        return zoneService.getZones();
     }
 
     @PutMapping("/UpdateZoneTemperature")

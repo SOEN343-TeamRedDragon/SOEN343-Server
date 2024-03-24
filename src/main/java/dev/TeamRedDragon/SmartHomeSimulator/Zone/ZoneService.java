@@ -56,11 +56,11 @@ public class ZoneService {
     public List<Zone> getZones() {
         if (zones.isEmpty()) {
             Home home = Home.getHome();
+            Zone zone = new Zone(1, 19, 18, 17);
             for (Room room : home.getRoomList()) {
-                Zone zone = new Zone(1, 19, 18, 17);
                 zone.addRoom(room.getRoomId());
-                zones.add(zone);
             }
+            zones.add(zone);
         }
         return zones;
     }

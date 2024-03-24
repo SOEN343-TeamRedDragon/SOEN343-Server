@@ -1,14 +1,23 @@
-package dev.TeamRedDragon.SmartHomeSimulator.Utilities;
+package TemperatureData;
 
+import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+
 
 @Service
 public class TemperatureDataService {
+
+    static SimulationClockService SimulationClockService = new SimulationClockService();
+
+    static ArrayList<TemperatureData> csvTemperatureData = new ArrayList<>();
+
+    static ArrayList<TemperatureData> temperatureDataParsed;
 
 
     public static void generateTemperatureCSV(int year) {
@@ -48,7 +57,6 @@ public class TemperatureDataService {
         }
 
 
-
         for (int m = 1; m <= 12; m++) {
             switch (m) {
                 case 1:
@@ -77,7 +85,7 @@ public class TemperatureDataService {
                     break;
             }
 
-            switch(m) {
+            switch (m) {
                 case 1:
                     maxTemp = -4;
                     minTemp = -12;
@@ -131,10 +139,10 @@ public class TemperatureDataService {
                     break;
             }
 
-            for (int d = 1; d <= daysInMonth; d++ ) {
-                for (int h = 0; h < 24; h++ ) {
-                    temp = ThreadLocalRandom.current().nextInt(minTemp, maxTemp +1);
-                    output = String.format("%d-%02d-%02d,%02d:00,%d\n", year,m, d, h, temp);
+            for (int d = 1; d <= daysInMonth; d++) {
+                for (int h = 0; h < 24; h++) {
+                    temp = ThreadLocalRandom.current().nextInt(minTemp, maxTemp + 1);
+                    output = String.format("%d-%02d-%02d,%02d:00,%d\n", year, m, d, h, temp);
 
                     try {
                         assert fileWriter != null;
@@ -149,11 +157,59 @@ public class TemperatureDataService {
 
         try {
             fileWriter.close();
-        } catch( IOException e) {
+        } catch (IOException e) {
             System.out.println("Error closing fileWriter.");
             e.printStackTrace();
         }
     }
 
+
+    public static ArrayList<TemperatureData> getTemperatureFromCSV() {
+
+
+        String filePath = "src/main/resources/data/temperatureData2024.csv";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                String date = parts[0];
+                String time = parts[1];
+                double temperature = Double.parseDouble(parts[2]);
+                TemperatureData weatherData = new TemperatureData(date, time, temperature);
+                csvTemperatureData.add(weatherData);
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return csvTemperatureData;
+
+    }
+
+
+    public static double getTemperatureFromClockAndTemperatureData() {
+
+        // Works with hard coded
+
+        String clockTime = "2024-03-24 15:00";
+
+        List<String> splitClockInput = Arrays.asList(clockTime.split("\\s+"));
+        String clockDateSplit = splitClockInput.get(0).substring(4, 10);
+        String ClockTimeSplit = splitClockInput.get(1).substring(0, 2);
+
+        temperatureDataParsed = getTemperatureFromCSV();
+
+        for (int tempLine = 0; tempLine < temperatureDataParsed.size(); tempLine++) {
+            TemperatureData weatherData = temperatureDataParsed.get(tempLine);
+
+            String temperatureDataDate = weatherData.getDate().substring(4, 10);
+            String temperatureDataTime = weatherData.getTime().substring(0, 2);
+
+            if (temperatureDataDate.equalsIgnoreCase(clockDateSplit) && temperatureDataTime.equalsIgnoreCase(ClockTimeSplit)) {
+                return weatherData.getTemperature();
+            }
+        }
+        return 0;
+    }
 
 }

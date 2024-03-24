@@ -1,5 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.TemperatureData;
 
+import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class TemperatureDataService {
 
+    TemperatureDataService TemperatureDataService;
     static SimulationClockService SimulationClockService = new SimulationClockService();
 
     static ArrayList<TemperatureData> csvTemperatureData = new ArrayList<>();
@@ -211,6 +213,13 @@ public class TemperatureDataService {
             }
         }
         return 0;
+    }
+
+    public boolean IsCoolerOutside(Room room){
+        if (room.getTemperature() > TemperatureDataService.getTemperatureFromClockAndTemperatureData()){
+            return true;
+        }
+        return false;
     }
 
 }

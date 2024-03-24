@@ -28,6 +28,15 @@ public class Home {
         return home;
     }
 
+    public Room getRoomById(int roomId) {
+        for (Room room : roomList) {
+            if (room.getRoomId() == roomId) {
+                return room;
+            }
+        }
+        return null; 
+    }
+
     public int getHomeId() { return homeId;}
 
     public String getHomeType() {

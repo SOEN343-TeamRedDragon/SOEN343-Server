@@ -15,10 +15,10 @@ public class ZoneController {
  
     @PostMapping("/CreateZone")
     public Zone createZone(@RequestBody Map<String, String> data) {
-        double zoneId = Double.parseDouble(data.get("zone"));
-        double amTemp = Double.parseDouble(data.get("AM"));
-        double pmTemp = Double.parseDouble(data.get("PM"));
-        double nightTemp = Double.parseDouble(data.get("NIGHT"));
+        double zoneId = Double.parseDouble(data.get("zoneId"));
+        double amTemp = Double.parseDouble(data.get("amTemp"));
+        double pmTemp = Double.parseDouble(data.get("pmTemp"));
+        double nightTemp = Double.parseDouble(data.get("nightTemp"));
         return zoneService.createZone(zoneId, amTemp, pmTemp, nightTemp);
     }
 

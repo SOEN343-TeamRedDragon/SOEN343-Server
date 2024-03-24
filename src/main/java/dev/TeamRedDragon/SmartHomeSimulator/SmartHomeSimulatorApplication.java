@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
+
 @SpringBootApplication
 public class SmartHomeSimulatorApplication {
 	private static SimulationClock simulationClock = SimulationClock.getSimulationClock();
@@ -14,7 +15,11 @@ public class SmartHomeSimulatorApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SmartHomeSimulatorApplication.class, args);
 
+
 		// Start Simulation Clock
 		SimulationClockService.startClock();
+
+
 	}
+
 }

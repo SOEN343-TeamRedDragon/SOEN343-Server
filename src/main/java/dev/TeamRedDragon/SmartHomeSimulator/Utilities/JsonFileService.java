@@ -39,8 +39,6 @@ public class JsonFileService {
         }
     }
 
-
-
     public static void updateHomeObjectFromJSON() throws IOException, ParseException {
         Home home = Home.getHome();
         ArrayList<Room> roomList = new ArrayList<>();
@@ -63,7 +61,6 @@ public class JsonFileService {
             ArrayList<User> userList = new ArrayList<>();
             // Get the parameters needed by the room constructor
             int roomId = toIntExact((long) roomObj.get("roomId"));
-            int zoneId = toIntExact((long) roomObj.get("zoneId"));
             String roomType = (String) roomObj.get("roomType");
             int elementCount = toIntExact((long) roomObj.get("elementCount"));
             JSONArray elementArray = (JSONArray) roomObj.get("smartElements");
@@ -122,7 +119,7 @@ public class JsonFileService {
                 userList.add(new User(userId, name, userName, password, role, location));
             }
             // Then you can build a room and feed it the smartElement arrayList just created
-            roomList.add(new Room(roomId, zoneId, roomType, smartElementList, userList));
+            roomList.add(new Room(roomId, roomType, smartElementList, userList));
 
         }
         // Then you can add the roomList to the home object

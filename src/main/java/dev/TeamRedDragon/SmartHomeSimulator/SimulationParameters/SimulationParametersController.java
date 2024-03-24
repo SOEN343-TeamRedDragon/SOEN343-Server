@@ -53,7 +53,4 @@ public class SimulationParametersController {
         else
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Simulation parameters not found.");
     }
-
-
-
 }

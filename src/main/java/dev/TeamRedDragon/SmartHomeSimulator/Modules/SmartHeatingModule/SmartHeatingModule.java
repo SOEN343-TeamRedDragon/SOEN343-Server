@@ -1,4 +1,4 @@
-package dev.TeamRedDragon.SmartHomeSimulator.Modules;
+package dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHeatingModule;
 
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Heater;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
@@ -12,6 +12,8 @@ import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.SetTemperatureCommand;
 
 public class SmartHeatingModule implements SmartElementObserver {
+
+    private static SmartHeatingModule smartHeatingModule;
 
     private ArrayList<Room> coolZoneList = new ArrayList<Room>();
     private ArrayList<Room> heatZoneList = new ArrayList<Room>();
@@ -40,12 +42,26 @@ public class SmartHeatingModule implements SmartElementObserver {
         heatZoneList.remove(room);
     }
 
+    private SmartHeatingModule(){}
+
+    public static SmartHeatingModule getSmartHeatingModule() {
+        if (smartHeatingModule == null) {
+            smartHeatingModule = new SmartHeatingModule();
+        }
+        return smartHeatingModule;
+    }
+
+    /*
+
     public int getCurrentHour() {
         LocalTime currentTime = LocalTime.now();
         int currentHour = currentTime.getHour();
         return currentHour;
     }
 
+     */
+
+    /*
     public void setDesiredTemperature() {
         int currentHour = getCurrentHour();
         for (Room room : coolZoneList) {
@@ -67,7 +83,10 @@ public class SmartHeatingModule implements SmartElementObserver {
             }
         }
     }
-    
+
+     */
+
+    /*
     private Command getTemperatureCommandForHour(Heater heater, int currentHour) {
         if (currentHour >= 0 && currentHour <= 6) {
             return new SetTemperatureCommand(heater, 15);
@@ -81,8 +100,7 @@ public class SmartHeatingModule implements SmartElementObserver {
         return new SetTemperatureCommand(heater, 20);
     }
 
-
-
+     */
 
     // Observer pattern for update method for heating
     @Override

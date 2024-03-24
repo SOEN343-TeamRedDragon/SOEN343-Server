@@ -39,8 +39,6 @@ public class JsonFileService {
         }
     }
 
-
-
     public static void updateHomeObjectFromJSON() throws IOException, ParseException {
         Home home = Home.getHome();
         ArrayList<Room> roomList = new ArrayList<>();
@@ -96,6 +94,9 @@ public class JsonFileService {
                         break;
                     case("Heater"):
                         smartElementList.add(new Heater(elementId, classType, isOpen));
+                        break;
+                    case("AirConditioner"):
+                        smartElementList.add(new AirConditioner(elementId, classType, isOpen));
                         break;
                 }
             }

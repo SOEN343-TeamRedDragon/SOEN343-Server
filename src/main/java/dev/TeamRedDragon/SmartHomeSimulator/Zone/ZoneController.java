@@ -37,7 +37,7 @@ public class ZoneController {
     }
 
     @GetMapping("/GetZones")
-    public List<String> getZones() {
+    public List<Zone> getZones() {
         return zoneService.getZonesDetailedInfo();
     }
 

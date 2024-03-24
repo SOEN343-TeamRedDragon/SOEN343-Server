@@ -39,7 +39,35 @@ public class Zone {
         roomList.remove(roomId);
     }
 
+    public double getAmTemp() {
+        return amTemp;
+    }
+
+    public double getPmTemp() {
+        return pmTemp;
+    }
+
+    public double getNightTemp() {
+        return nightTemp;
+    }
+
+    public void setAmTemp(double amTemp) {
+        this.amTemp = amTemp;
+    }
+
+    public void setPmTemp(double pmTemp) {
+        this.pmTemp = pmTemp;
+    }
+
+    public void setNightTemp(double nightTemp) {
+        this.nightTemp = nightTemp;
+    }
+
     public String toString() {
-        return "Zone ID: " + zoneId + " AM Temp: " + amTemp + " PM Temp: " + pmTemp + " Night Temp: " + nightTemp;
+        return "Zone ID: " + zoneId +
+               " AM Temp: " + amTemp +
+               " PM Temp: " + pmTemp +
+               " Night Temp: " + nightTemp +
+               " Rooms: " + roomList;
     }
 }

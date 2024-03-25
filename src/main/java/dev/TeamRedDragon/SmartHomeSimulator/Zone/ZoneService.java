@@ -12,8 +12,9 @@ import java.util.List;
 
 @Service
 public class ZoneService {
-    
-    @Autowired RoomService roomService;
+
+    @Autowired
+    RoomService roomService;
 
     private List<Zone> zones = new ArrayList<>();
 
@@ -58,7 +59,9 @@ public class ZoneService {
             Home home = Home.getHome();
             Zone zone = new Zone(1, 19, 18, 17);
             for (Room room : home.getRoomList()) {
+
                 zone.addRoom(room.getRoomId());
+
             }
             zones.add(zone);
         }

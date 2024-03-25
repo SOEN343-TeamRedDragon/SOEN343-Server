@@ -48,7 +48,7 @@ public class SmartHeatingModuleService implements Observer {
                         case (17), (18), (19), (20), (21), (22), (23) -> zone.getPmTemp();
                         default -> 19;
                     };
-                    if(room.getTemperature() < desiredTemp + 3){
+                    if(room.getTemperature() < desiredTemp - 3){
                         for (SmartElement element : room.getSmartElementList())
                         {
                             if (Objects.equals(element.getElementType(), "AirConditioner"))

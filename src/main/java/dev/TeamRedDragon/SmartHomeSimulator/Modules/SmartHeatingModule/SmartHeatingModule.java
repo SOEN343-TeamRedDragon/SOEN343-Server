@@ -99,9 +99,4 @@ public class SmartHeatingModule {
             }
         }
     }
-
-    @Override
-    public void update() {
-        updateRoomTempByOutdoorTemp();
-    }
 }

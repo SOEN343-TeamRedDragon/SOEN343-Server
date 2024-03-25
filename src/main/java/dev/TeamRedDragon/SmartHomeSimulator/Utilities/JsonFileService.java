@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.*;
+import dev.TeamRedDragon.SmartHomeSimulator.TemperatureData.TemperatureDataService;
 import dev.TeamRedDragon.SmartHomeSimulator.User.*;
 import jakarta.annotation.PostConstruct;
 import org.json.simple.JSONArray;
@@ -63,7 +64,7 @@ public class JsonFileService {
             int roomId = toIntExact((long) roomObj.get("roomId"));
             int zoneId = toIntExact((long) roomObj.get("zoneId"));
             String roomType = (String) roomObj.get("roomType");
-            double temperature = (double) roomObj.get("temperature");
+            double temperature = TemperatureDataService.getTemperatureFromClockAndTemperatureData();
             int elementCount = toIntExact((long) roomObj.get("elementCount"));
             JSONArray elementArray = (JSONArray) roomObj.get("smartElements");
             int userCount = toIntExact((long) roomObj.get("userCount"));

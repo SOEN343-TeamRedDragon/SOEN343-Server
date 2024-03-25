@@ -43,6 +43,10 @@ public class SimulationClockService {
 
     public String getTime() { return simulationClock.getTime();}
 
+    public int getHour() {
+        return Integer.parseInt(simulationClock.getTime().substring(11,13));
+    }
+
     @PostConstruct
     public void initialize() {
         startClock();

@@ -1,6 +1,8 @@
 package dev.TeamRedDragon.SmartHomeSimulator;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHeatingModule.SmartHeatingModule;
+import dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHeatingModule.SmartHeatingModuleService;
+import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClock;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +19,8 @@ public class SmartHomeSimulatorApplication {
 		SpringApplication.run(SmartHomeSimulatorApplication.class, args);
 
 		SimulationClockService.startClock();
-		SimulationClock.getSimulationClock().subscribe(SmartHeatingModule.getSmartHeatingModule());
+		SmartHeatingModuleService smartHeatingModuleService = new SmartHeatingModuleService();
+		SimulationClock.getSimulationClock().subscribe(smartHeatingModuleService);
 
 	}
 }

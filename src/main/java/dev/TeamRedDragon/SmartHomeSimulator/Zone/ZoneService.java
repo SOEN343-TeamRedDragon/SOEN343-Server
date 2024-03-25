@@ -1,5 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Zone;
 
+import dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHeatingModule.SmartHeatingModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +16,16 @@ public class ZoneService {
     
     @Autowired RoomService roomService;
 
-    private List<Zone> zones = new ArrayList<>();
+    private SmartHeatingModule smartHeatingModule = SmartHeatingModule.getSmartHeatingModule();
 
     public Zone createZone(double zoneId, double amTemp, double pmTemp, double nightTemp) {
         Zone zone = new Zone(zoneId, amTemp, pmTemp, nightTemp);
-        zones.add(zone);
+        smartHeatingModule.addZone(zone);
         return zone;
     }
 
     public Zone addRoomToZoneByZoneIdAndRoomId(double zoneId, int roomId) {
-        for (Zone zone : zones) {
+        for (Zone zone : smartHeatingModule.getZones()) {
             if (zone.getZoneId() == zoneId) {
                 zone.addRoom(roomId);
                 roomService.setZoneIdByRoomId(roomId, roomId);
@@ -35,7 +36,7 @@ public class ZoneService {
     }
 
     public Zone removeRoomFromZoneByZoneIdAndRoomId(double zoneId, int roomId) {
-        for (Zone zone : zones) {
+        for (Zone zone : smartHeatingModule.getZones()) {
             if (zone.getZoneId() == zoneId) {
                 zone.removeRoom(roomId);
                 roomService.setZoneIdByRoomId(1, roomId);
@@ -45,29 +46,21 @@ public class ZoneService {
         return null;
     }
 
-    public List<Zone> getZonesDetailedInfo() {
-        List<Zone> detailedZoneInfo = new ArrayList<>();
-        for (Zone zone : zones) {
-            detailedZoneInfo.add(zone);
-        }
-        return detailedZoneInfo;
-    }
-
     public List<Zone> getZones() {
-        if (zones.isEmpty()) {
+        if (smartHeatingModule.getZones().isEmpty()) {
             Home home = Home.getHome();
             Zone zone = new Zone(1, 19, 18, 17);
             for (Room room : home.getRoomList()) {
                 zone.addRoom(room.getRoomId());
             }
-            zones.add(zone);
+            smartHeatingModule.addZone(zone);
         }
-        return zones;
+        return smartHeatingModule.getZones();
     }
 
     public Zone updateZoneTemperature(int zoneId, String timeOfDay, double newTemperature) {
         Zone zoneToUpdate = null;
-        for (Zone zone : zones) {
+        for (Zone zone : smartHeatingModule.getZones()) {
             if (zone.getZoneId() == zoneId) {
                 zoneToUpdate = zone;
                 break;

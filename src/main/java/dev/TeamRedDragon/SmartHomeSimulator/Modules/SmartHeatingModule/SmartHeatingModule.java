@@ -17,67 +17,34 @@ import dev.TeamRedDragon.SmartHomeSimulator.Command.Command;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.SetTemperatureCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.TemperatureData.TemperatureDataService;
+import dev.TeamRedDragon.SmartHomeSimulator.Zone.Zone;
 import jakarta.annotation.PostConstruct;
 
-public class SmartHeatingModule implements Observer {
+public class SmartHeatingModule {
 
     OffCommand offCommand;
     OnCommand onCommand;
 
     private static SmartHeatingModule smartHeatingModule;
 
-    private SmartHeatingModuleService smartHeatingModuleService = new SmartHeatingModuleService();
-
     private static SimulationClock simulationClock;
 
     private Home home = Home.getHome();
 
-    private ArrayList<Room> coolZoneList = new ArrayList<Room>();
-    private ArrayList<Room> heatZoneList = new ArrayList<Room>();
-
-    public ArrayList<Room> getCoolZoneList() {
-        return coolZoneList;
-    }
-
-    public ArrayList<Room> getHeatZoneList() {
-        return heatZoneList;
-    }
-
-    public void addRoomToCoolZoneList(Room room) {
-        coolZoneList.add(room);
-    }
-
-    public void addRoomToHeatZoneList(Room room) {
-        heatZoneList.add(room);
-    }
-
-    public void removeRoomFromCoolZoneList(Room room) {
-        coolZoneList.remove(room);
-    }
-
-    public void removeRoomFromHeatZoneList(Room room) {
-        heatZoneList.remove(room);
-    }
-
+    private ArrayList<Zone> zones = new ArrayList<>();
     private SmartHeatingModule(){}
 
     public static SmartHeatingModule getSmartHeatingModule() {
         if (smartHeatingModule == null) {
-            smartHeatingModule = new SmartHeatingModule();
-            simulationClock = SimulationClock.getSimulationClock();
-            simulationClock.subscribe(smartHeatingModule);
+                smartHeatingModule = new SmartHeatingModule();
         }
         return smartHeatingModule;
     }
 
-    @Override
-    public void update() {
-        smartHeatingModuleService.updateRoomTempByOutdoorTemp();
-        smartHeatingModuleService.changeRoomTempAlgorithm();
-    }
+    public void addZone(Zone zone) { this.zones.add(zone);}
+    public void removeZone(Zone zone) {this.zones.remove(zone);}
 
-    @PostConstruct
-    public void init() {
-        simulationClock.subscribe(smartHeatingModule);
-    }
+    public ArrayList<Zone> getZones() {return this.zones; }
+
+
 }

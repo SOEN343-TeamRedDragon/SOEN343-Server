@@ -77,6 +77,10 @@ public class JsonFileService {
                 String classType = (String) smartElementObj.get("classType");
                 int elementId = toIntExact((long) smartElementObj.get("elementId"));
                 String open = (String) smartElementObj.get("open");
+                boolean isBlocked = false;
+                if (classType.equals("Window")) {
+                    isBlocked = (boolean) smartElementObj.get("blocked");
+                }
                 boolean isOpen = false;
                 if (Objects.equals(open, "True"))
                     isOpen = true;
@@ -89,7 +93,7 @@ public class JsonFileService {
                         smartElementList.add(new Door(elementId, classType, isOpen));
                         break;
                     case("Window"):
-                        smartElementList.add(new Window(elementId, classType, isOpen));
+                        smartElementList.add(new Window(elementId, classType, isOpen, isBlocked));
                         break;
                     case("Light"):
                         smartElementList.add(new Light(elementId, classType, isOpen));
@@ -158,6 +162,10 @@ public class JsonFileService {
                 smartElementObj.put("classType", smartElement.getElementType());
                 smartElementObj.put("elementId", smartElement.getElementId());
                 smartElementObj.put("open", smartElement.getIsOpen());
+                if (smartElement.getElementType().equals("Window"))
+                {
+                    smartElementObj.put("blocked", ((Window) smartElement).isWindowBlocked());
+                }
 
                 smartElementJArray.add(smartElementObj);
             }

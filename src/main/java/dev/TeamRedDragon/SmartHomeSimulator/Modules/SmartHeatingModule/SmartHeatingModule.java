@@ -7,6 +7,7 @@ import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClock;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.AirConditioner;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Heater;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class SmartHeatingModule implements Observer {
     private static SimulationClock simulationClock = SimulationClock.getSimulationClock();
 
     private Home home = Home.getHome();
+
+    private ArrayList<Window> blockedWindows = new ArrayList<>();
 
     private ArrayList<Room> coolZoneList = new ArrayList<Room>();
     private ArrayList<Room> heatZoneList = new ArrayList<Room>();
@@ -78,6 +81,30 @@ public class SmartHeatingModule implements Observer {
                         element.executeCommand();
                     }
                 }
+            }
+        }
+    }
+
+    public void windowIsBlocked() {
+        blockedWindows.clear();
+        
+        for (Room room : home.getRoomList()) {
+            for (SmartElement element : room.getSmartElementList()) {
+                if (element instanceof Window) {
+                    Window window = (Window) element;
+                    if (window.isWindowBlocked()) {
+                        blockedWindows.add(window);
+                    }
+                }
+            }
+        }
+    }
+
+    public void windowIsUnBlocked() {
+        for (int i = blockedWindows.size() - 1; i >= 0; i--) {
+            Window window = blockedWindows.get(i);
+            if (!window.isWindowBlocked()) {
+                blockedWindows.remove(i);
             }
         }
     }

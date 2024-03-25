@@ -9,7 +9,6 @@ import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
 
 public class ToggleCommand extends Command {
 
-    SmartHeatingModule SHH;
 
     public ToggleCommand(SmartElement smartElement){
         super(smartElement);
@@ -17,14 +16,7 @@ public class ToggleCommand extends Command {
 
     @Override
     public boolean execute() {
-        if (smartElement instanceof Window) {
-            Window window = (Window) smartElement;
-            SHH.blockedWindows.contains(window);
-            return false;
-        }
-        else {
-            smartElement.setIsOpen(false);
-            return true;
-        }
+        smartElement.setIsOpen(false);
+        return true;
     }
 }

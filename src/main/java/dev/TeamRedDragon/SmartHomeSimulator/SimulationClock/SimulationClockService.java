@@ -1,5 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationClock;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,6 +42,11 @@ public class SimulationClockService {
     public boolean getIsStarted() {return isStarted;}
 
     public String getTime() { return simulationClock.getTime();}
+
+    @PostConstruct
+    public void initialize() {
+        startClock();
+    }
 
 
 }

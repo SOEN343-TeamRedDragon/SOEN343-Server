@@ -32,7 +32,7 @@ public class SmartHeatingModule {
 
     private Home home = Home.getHome();
 
-    private ArrayList<Window> blockedWindows = new ArrayList<>();
+    public ArrayList<Window> blockedWindows = new ArrayList<>();
 
     private ArrayList<Room> coolZoneList = new ArrayList<Room>();
     private ArrayList<Room> heatZoneList = new ArrayList<Room>();

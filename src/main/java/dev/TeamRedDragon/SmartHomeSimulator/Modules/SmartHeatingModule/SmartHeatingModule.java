@@ -8,6 +8,7 @@ import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClock;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.AirConditioner;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Heater;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
+import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -31,6 +32,35 @@ public class SmartHeatingModule {
 
     private Home home = Home.getHome();
 
+    private ArrayList<Window> blockedWindows = new ArrayList<>();
+
+    private ArrayList<Room> coolZoneList = new ArrayList<Room>();
+    private ArrayList<Room> heatZoneList = new ArrayList<Room>();
+
+    public ArrayList<Room> getCoolZoneList() {
+        return coolZoneList;
+    }
+
+    public ArrayList<Room> getHeatZoneList() {
+        return heatZoneList;
+    }
+
+    public void addRoomToCoolZoneList(Room room) {
+        coolZoneList.add(room);
+    }
+
+    public void addRoomToHeatZoneList(Room room) {
+        heatZoneList.add(room);
+    }
+
+    public void removeRoomFromCoolZoneList(Room room) {
+        coolZoneList.remove(room);
+    }
+
+    public void removeRoomFromHeatZoneList(Room room) {
+        heatZoneList.remove(room);
+    }
+
     private ArrayList<Zone> zones = new ArrayList<>();
     private SmartHeatingModule(){}
 
@@ -46,5 +76,32 @@ public class SmartHeatingModule {
 
     public ArrayList<Zone> getZones() {return this.zones; }
 
+    public void windowIsBlocked() {
+        blockedWindows.clear();
+        
+        for (Room room : home.getRoomList()) {
+            for (SmartElement element : room.getSmartElementList()) {
+                if (element instanceof Window) {
+                    Window window = (Window) element;
+                    if (window.isWindowBlocked()) {
+                        blockedWindows.add(window);
+                    }
+                }
+            }
+        }
+    }
 
+    public void windowIsUnBlocked() {
+        for (int i = blockedWindows.size() - 1; i >= 0; i--) {
+            Window window = blockedWindows.get(i);
+            if (!window.isWindowBlocked()) {
+                blockedWindows.remove(i);
+            }
+        }
+    }
+
+    @Override
+    public void update() {
+        updateRoomTempByOutdoorTemp();
+    }
 }

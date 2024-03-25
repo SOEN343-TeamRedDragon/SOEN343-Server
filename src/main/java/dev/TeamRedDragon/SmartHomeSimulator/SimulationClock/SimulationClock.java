@@ -3,6 +3,7 @@ package dev.TeamRedDragon.SmartHomeSimulator.SimulationClock;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observable;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -75,6 +76,7 @@ public class SimulationClock implements Observable {
 
             if (min == 59) {
                 min = 0;
+                notifyObservers();
                 if (hour == 23) {
                     hour = 0;
                     if (day == maxMonth) {
@@ -88,10 +90,12 @@ public class SimulationClock implements Observable {
                         day += 1;
                 } else {
                     hour += 1;
-                    notifyObservers();
                 }
-            } else
+            } else {
                 min += 1;
+                notifyObservers();
+            }
+
 
             String output = String.format("%d-%02d-%02d %02d:%02d", year, month, day, hour, min);
             return output;
@@ -122,10 +126,12 @@ public class SimulationClock implements Observable {
 
     }
 
+    @Override
     public void notifyObservers() {
         for (Observer ob : observers)
         {
             ob.update();
         }
     }
+
 }

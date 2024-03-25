@@ -1,6 +1,7 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHeatingModule;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Command.OffCommand;
+import dev.TeamRedDragon.SmartHomeSimulator.Command.OnCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClock;
@@ -17,14 +18,17 @@ import dev.TeamRedDragon.SmartHomeSimulator.Command.Command;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.SetTemperatureCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.TemperatureData.TemperatureDataService;
+import dev.TeamRedDragon.SmartHomeSimulator.Zone.Zone;
+import jakarta.annotation.PostConstruct;
 
-public class SmartHeatingModule implements Observer {
+public class SmartHeatingModule {
 
-    Command command;
+    OffCommand offCommand;
+    OnCommand onCommand;
 
     private static SmartHeatingModule smartHeatingModule;
 
-    private static SimulationClock simulationClock = SimulationClock.getSimulationClock();
+    private static SimulationClock simulationClock;
 
     private Home home = Home.getHome();
 
@@ -57,33 +61,20 @@ public class SmartHeatingModule implements Observer {
         heatZoneList.remove(room);
     }
 
+    private ArrayList<Zone> zones = new ArrayList<>();
     private SmartHeatingModule(){}
 
     public static SmartHeatingModule getSmartHeatingModule() {
         if (smartHeatingModule == null) {
-            smartHeatingModule = new SmartHeatingModule();
-            simulationClock.subscribe(smartHeatingModule);
+                smartHeatingModule = new SmartHeatingModule();
         }
-
         return smartHeatingModule;
     }
 
-    public void updateRoomTempByOutdoorTemp() {
-        for (Room room : home.getRoomList())
-        {
-            if(TemperatureDataService.IsCoolerOutside(room)){
-                for (SmartElement element : room.getSmartElementList())
-                {
-                    if (Objects.equals(element.getElementType(), "AirConditioner"))
-                    {
-                        command = new OffCommand(element);
-                        element.setCommand(command);
-                        element.executeCommand();
-                    }
-                }
-            }
-        }
-    }
+    public void addZone(Zone zone) { this.zones.add(zone);}
+    public void removeZone(Zone zone) {this.zones.remove(zone);}
+
+    public ArrayList<Zone> getZones() {return this.zones; }
 
     public void windowIsBlocked() {
         blockedWindows.clear();

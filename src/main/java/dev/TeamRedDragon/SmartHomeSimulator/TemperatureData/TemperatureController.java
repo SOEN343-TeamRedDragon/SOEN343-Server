@@ -12,7 +12,7 @@ public class TemperatureController {
     @Autowired
     TemperatureDataService temperatureDataService;
 
-    @GetMapping("/GetTemp")
+    @GetMapping("/GetOutdoorTemp")
     public double getTemperatureFromClockAndTemperatureData(){
         return temperatureDataService.getTemperatureFromClockAndTemperatureData();
     }

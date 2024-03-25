@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/Heating")
 public class SmartHeatingModuleController {
 
-    @Autowired
     private SmartHeatingModuleService smartHeatingModuleService;
 
 

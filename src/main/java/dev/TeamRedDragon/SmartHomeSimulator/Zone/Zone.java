@@ -36,7 +36,8 @@ public class Zone {
     }
 
     public void removeRoom(int roomId) {
-        roomList.remove(roomId);
+        int index = roomList.indexOf(roomId);
+        roomList.remove(index);
     }
 
     public double getAmTemp() {

@@ -85,7 +85,7 @@ class ZoneControllerTest {
 
     @Test
     @Order(4)
-    void updateZoneTemperature() throws Exception {
+    void updateZoneTemperaturePM() throws Exception {
         // Arrange
         obj.put("zoneId", 2);
         obj.put("timeOfDay", "PM");
@@ -104,6 +104,47 @@ class ZoneControllerTest {
 
     @Test
     @Order(5)
+    void updateZoneTemperatureAM() throws Exception {
+        // Arrange
+        obj.put("zoneId", 2);
+        obj.put("timeOfDay", "AM");
+        obj.put("newTemperature", 10.0);
+
+
+        // Act
+        ResultActions result = mockMvc.perform(put("/ZoneController/UpdateZoneTemperature")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.pmTemp").value(10.0));
+    }
+
+    @Test
+    @Order(6)
+    void updateZoneTemperatureNight() throws Exception {
+        // Arrange
+        obj.put("zoneId", 2);
+        obj.put("timeOfDay", "NIGHT");
+        obj.put("newTemperature", 10.0);
+
+
+        // Act
+        ResultActions result = mockMvc.perform(put("/ZoneController/UpdateZoneTemperature")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.pmTemp").value(10.0));
+    }
+
+
+
+
+    @Test
+    @Order(7)
     void removeRoomFromZoneByZoneIdAndRoomId() throws Exception {
         // Arrange
         obj.put("zoneId", 2);

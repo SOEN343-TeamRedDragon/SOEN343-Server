@@ -65,8 +65,5 @@ public abstract class SmartElement {
     public void setIsOpen(boolean open) {
         isOpen = open;
     }
-    public void toggle(){
-        isOpen = !isOpen;
-    }
 
 }

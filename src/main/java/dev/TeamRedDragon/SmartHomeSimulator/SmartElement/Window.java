@@ -9,11 +9,6 @@ public class Window extends SmartElement {
         this.isBlocked = isBlocked;
     }
 
-    public boolean isWindowBlocked() {
-        return isBlocked;
-    }
-
- 
     @Override
     public String toString() {
         return "Window {" +
@@ -21,5 +16,9 @@ public class Window extends SmartElement {
                 ", elementType = '" + elementType + '\'' +
                 ", isOpen = " + isOpen +
                 '}';
+    }
+
+    public boolean getIsBlocked() {
+        return isBlocked;
     }
 }

@@ -9,26 +9,19 @@ import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
 
 public class ToggleCommand extends Command {
 
-    Home home = Home.getHome();
-
     public ToggleCommand(SmartElement smartElement){
         super(smartElement);
     }
 
     @Override
     public boolean execute() {
-        for (Room room : home.getRoomList()) {
-            for (SmartElement element : room.getSmartElementList()) {
-                if (element instanceof Window) {
-                    Window window = (Window) element;
-                    if (!window.isWindowBlocked()) {
-                        element.setIsOpen(false);
-                    }
-                } else {
-                    element.setIsOpen(false);
-                }
+        if (smartElement instanceof Window) {
+            Window window = (Window) smartElement;
+            if (window.getIsBlocked()) {
+                return false;
             }
         }
+        smartElement.setIsOpen(!smartElement.getIsOpen());
         return true;
     }
 }

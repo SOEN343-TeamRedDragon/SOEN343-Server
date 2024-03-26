@@ -164,7 +164,7 @@ public class JsonFileService {
                 smartElementObj.put("open", smartElement.getIsOpen());
                 if (smartElement.getElementType().equals("Window"))
                 {
-                    smartElementObj.put("blocked", ((Window) smartElement).isWindowBlocked());
+                    smartElementObj.put("blocked", ((Window) smartElement).getIsBlocked());
                 }
 
                 smartElementJArray.add(smartElementObj);

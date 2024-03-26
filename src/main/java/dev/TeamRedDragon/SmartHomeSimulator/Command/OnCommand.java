@@ -8,26 +8,21 @@ import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
 
 public class OnCommand extends Command {
 
-    Home home = Home.getHome();
-
     public OnCommand(SmartElement smartElement){
         super(smartElement);
     }
 
     @Override
     public boolean execute() {
-        for (Room room : home.getRoomList()) {
-            for (SmartElement element : room.getSmartElementList()) {
-                if (element instanceof Window) {
-                    Window window = (Window) element;
-                    if (!window.isWindowBlocked()) {
-                        element.setIsOpen(true);
-                    }
-                } else {
-                    element.setIsOpen(true);
-                }
+        
+        if (smartElement instanceof Window) {
+            Window window = (Window) smartElement;
+            if (window.getIsBlocked()) {
+                return false;
             }
         }
+
+        smartElement.setIsOpen(true);
         return true;
     }
 }

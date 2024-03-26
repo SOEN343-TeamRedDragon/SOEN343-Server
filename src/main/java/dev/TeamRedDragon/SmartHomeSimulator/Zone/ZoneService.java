@@ -25,15 +25,30 @@ public class ZoneService {
     }
 
     public Zone addRoomToZoneByZoneIdAndRoomId(double zoneId, int roomId) {
+        // Initialize a Zone object to hold the target zone
+        Zone targetZone = null;
+
+        // Iterate over all zones in the smart heating module
         for (Zone zone : smartHeatingModule.getZones()) {
+            // If the current zone contains the room, remove the room from this zone
+            if (zone.getRoomList().contains(roomId)) {
+                zone.removeRoom(roomId);
+            }
+            // If the current zone's ID matches the target zone ID, store a reference to it
             if (zone.getZoneId() == zoneId) {
-                zone.addRoom(roomId);
-                roomService.setZoneIdByRoomId(roomId, roomId);
-                return zone;
+                targetZone = zone;
             }
         }
-        return null;
-    }
+
+        // If the target zone was found, add the room to it and update the room's zone ID
+        if (targetZone != null) {
+            targetZone.addRoom(roomId);
+            roomService.setZoneIdByRoomId(roomId, roomId);
+        }
+
+        // Return the target zone (or null if it wasn't found)
+        return targetZone;
+}
 
     public Zone removeRoomFromZoneByZoneIdAndRoomId(double zoneId, int roomId) {
         for (Zone zone : smartHeatingModule.getZones()) {

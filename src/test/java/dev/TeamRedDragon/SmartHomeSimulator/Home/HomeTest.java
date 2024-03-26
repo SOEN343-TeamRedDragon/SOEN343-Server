@@ -6,16 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
 @AutoConfigureMockMvc
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class HomeTest {
-    Home home = Home.getHome();
+    static Home home = Home.getHome();
 
     @Test
     @Order(1)
@@ -39,4 +37,33 @@ class HomeTest {
         // Assert
         assertDoesNotThrow(() -> home.toString());
     }
+
+    @Test
+    @Order(4)
+    void testSetHomeType() {
+        // Assert
+        assertDoesNotThrow(() -> home.setHomeType("Test"));
+    }
+
+    @Test
+    @Order(5)
+    void testGetHomeType(){
+        // Assert
+        assertDoesNotThrow(() -> home.getHomeType());
+        assertEquals("Test", home.getHomeType());
+    }
+
+    @Test
+    @Order(6)
+    void testGetRoomById() {
+        // Assert
+        assertDoesNotThrow(() -> home.getRoomById(1));
+        assertNull(home.getRoomById(9999));
+    }
+
+    @AfterAll
+    static void tearDown() {
+        home.setHomeType("simpleHome");
+    }
+
 }

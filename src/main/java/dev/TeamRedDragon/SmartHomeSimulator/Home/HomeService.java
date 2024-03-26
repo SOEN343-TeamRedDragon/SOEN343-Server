@@ -22,22 +22,6 @@ public class HomeService {
     @Autowired
     private RoomService roomService;
 
-    public void toggleAllElementsByType(String elementType)
-    {
-        for (Room room : home.getRoomList())
-        {
-            for (SmartElement element : room.getSmartElementList())
-            {
-                if (Objects.equals(element.getElementType(), elementType))
-                {
-                    toggleCommand = new ToggleCommand(element);
-                    element.setCommand(toggleCommand);
-                    element.executeCommand();
-                }
-            }
-        }
-    }
-
     public Home setAllElementsStateByBooleanAndType(Boolean isOpen, String elementType)
     {
         for (Room room : home.getRoomList())

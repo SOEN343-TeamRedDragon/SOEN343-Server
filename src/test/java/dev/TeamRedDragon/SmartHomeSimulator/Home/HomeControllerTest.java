@@ -37,7 +37,7 @@ class HomeControllerTest {
     }
 
     @Test
-    void setAllElementsStateByBooleanAndType() throws Exception {
+    void setAllElementsStateByBooleanAndTypeTrue() throws Exception {
         // Arrange
         obj.put("isOpen", true);
         obj.put("elementType", "Light");
@@ -51,6 +51,24 @@ class HomeControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(jsonPath("$.roomList[0].smartElementList[?(@.elementType=='Light')].isOpen")
                         .value(true));
+
+    }
+
+    @Test
+    void setAllElementsStateByBooleanAndTypeFalse() throws Exception {
+        // Arrange
+        obj.put("isOpen", false);
+        obj.put("elementType", "Light");
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/HomeController/SetAllElements")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.roomList[0].smartElementList[?(@.elementType=='Light')].isOpen")
+                        .value(false));
 
     }
 }

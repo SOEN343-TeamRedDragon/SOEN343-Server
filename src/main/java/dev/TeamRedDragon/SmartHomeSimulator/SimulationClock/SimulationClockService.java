@@ -3,6 +3,8 @@ package dev.TeamRedDragon.SmartHomeSimulator.SimulationClock;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class SimulationClockService {
 
@@ -19,6 +21,15 @@ public class SimulationClockService {
     public void updateTimeSpeed(double timeSpeed) {
         t.interrupt();
         simulationClock.setTimeSpeed(timeSpeed);
+    }
+
+    public void updateTime(LocalDateTime dateTime) {
+        simulationClock.setRunning(false);
+        t.interrupt();
+        simulationClock.setDateTime(dateTime);
+        t = new Thread(simulationClock.clockRunnable);
+        simulationClock.setRunning(true);
+        t.start();
     }
 
     public static boolean startClock(){

@@ -16,6 +16,10 @@ public class SimulationClock implements Observable {
 
     private static String time;
 
+    private static LocalDateTime dateTime;
+
+    private boolean  isRunning = true;
+
     private SimulationClock() {}
 
     public static SimulationClock getSimulationClock() {
@@ -25,8 +29,18 @@ public class SimulationClock implements Observable {
         return simulationClock;
     }
 
+    public LocalDateTime getDateTime() {
+        if (dateTime != null)
+            return dateTime;
+        return LocalDateTime.now();
+    }
+
+    public static void setDateTime(LocalDateTime dateTime) {
+        SimulationClock.dateTime = dateTime;
+    }
+
     public void setTimeSpeed(double timeSpeed) {
-        if (timeSpeed == 0)
+        if (this.timeSpeed == 0)
             this.timeSpeed = 0.000001;
         else
             this.timeSpeed = timeSpeed;
@@ -35,8 +49,7 @@ public class SimulationClock implements Observable {
     public String getTime() {return this.time;}
 
     public Runnable clockRunnable = new Runnable() {
-
-        LocalDateTime currentDateTime = LocalDateTime.now();
+        LocalDateTime currentDateTime = getDateTime();
         int year = currentDateTime.getYear();
         int month = currentDateTime.getMonthValue();
         int day = currentDateTime.getDayOfMonth();
@@ -103,15 +116,18 @@ public class SimulationClock implements Observable {
 
         @Override
         public void run() {
-            while (true) {
+            System.out.println("Clock Started.");
+            while (isRunning) {
                 time = tick();
 
                 try {
                     Thread.sleep((long) (60000 / timeSpeed));
                 } catch (InterruptedException e) {
+
                     continue;
                 }
             }
+            System.out.println("Clock Stopped.");
         }
     };
 
@@ -134,4 +150,7 @@ public class SimulationClock implements Observable {
         }
     }
 
+    public void setRunning(boolean running) {
+        isRunning = running;
+    }
 }

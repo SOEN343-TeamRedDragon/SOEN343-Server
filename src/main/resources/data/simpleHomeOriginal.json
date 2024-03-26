@@ -20,7 +20,8 @@
           "classType": "Window",
           "elementId": 2,
           "elementType": "Window",
-          "open": ""
+          "open": "",
+          "blocked": true
         },
         {
           "classType": "Light",
@@ -55,14 +56,15 @@
         {
           "classType": "Door",
           "elementId": 1,
-          "elementType": "Window",
+          "elementType": "Door",
           "open": ""
         },
         {
           "classType": "Window",
           "elementId": 2,
           "elementType": "Window",
-          "open": ""
+          "open": "",
+          "blocked": false
         },
         {
           "classType": "Light",
@@ -98,7 +100,8 @@
           "classType": "Window",
           "elementId": 2,
           "elementType": "Window",
-          "open": ""
+          "open": "",
+          "blocked": false
         },
         {
           "classType": "Light",
@@ -134,7 +137,8 @@
           "classType": "Window",
           "elementId": 2,
           "elementType": "Window",
-          "open": ""
+          "open": "",
+          "blocked": false
         },
         {
           "classType": "Light",
@@ -194,7 +198,8 @@
           "classType": "Window",
           "elementId": 2,
           "elementType": "Window",
-          "open": ""
+          "open": "",
+          "blocked": false
         },
         {
           "classType": "Light",

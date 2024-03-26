@@ -30,10 +30,6 @@ public class SmartHeatingModule {
 
     private static SimulationClock simulationClock;
 
-    private Home home = Home.getHome();
-
-    public ArrayList<Window> blockedWindows = new ArrayList<>();
-
     private ArrayList<Room> coolZoneList = new ArrayList<Room>();
     private ArrayList<Room> heatZoneList = new ArrayList<Room>();
 
@@ -75,28 +71,4 @@ public class SmartHeatingModule {
     public void removeZone(Zone zone) {this.zones.remove(zone);}
 
     public ArrayList<Zone> getZones() {return this.zones; }
-
-    public void windowIsBlocked() {
-        blockedWindows.clear();
-        
-        for (Room room : home.getRoomList()) {
-            for (SmartElement element : room.getSmartElementList()) {
-                if (element instanceof Window) {
-                    Window window = (Window) element;
-                    if (window.isWindowBlocked()) {
-                        blockedWindows.add(window);
-                    }
-                }
-            }
-        }
-    }
-
-    public void windowIsUnBlocked() {
-        for (int i = blockedWindows.size() - 1; i >= 0; i--) {
-            Window window = blockedWindows.get(i);
-            if (!window.isWindowBlocked()) {
-                blockedWindows.remove(i);
-            }
-        }
-    }
 }

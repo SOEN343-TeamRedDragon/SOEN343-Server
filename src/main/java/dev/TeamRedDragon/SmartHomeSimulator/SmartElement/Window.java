@@ -2,27 +2,13 @@ package dev.TeamRedDragon.SmartHomeSimulator.SmartElement;
 
 public class Window extends SmartElement {
 
-    public boolean isBlocked = false;
+    private boolean isBlocked;
 
-    public Window(int elementId, String elementType, boolean isOpen) {
+    public Window(int elementId, String elementType, boolean isOpen, boolean isBlocked) {
         super(elementId, elementType, isOpen);
+        this.isBlocked = isBlocked;
     }
 
-    public boolean blockWindow() {
-        System.out.println("Window with the ID: " + this.elementId + " is now blocked.");
-        return isBlocked = true;
-    }
-
-    public boolean unblockWindow() {
-        System.out.println("Window with the ID: " + this.elementId + " is now unblocked.");
-        return isBlocked = false;
-    }
-
-    public boolean isWindowBlocked() {
-        return isBlocked;
-    }
-
- 
     @Override
     public String toString() {
         return "Window {" +
@@ -30,5 +16,9 @@ public class Window extends SmartElement {
                 ", elementType = '" + elementType + '\'' +
                 ", isOpen = " + isOpen +
                 '}';
+    }
+
+    public boolean getIsBlocked() {
+        return isBlocked;
     }
 }

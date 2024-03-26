@@ -1,7 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationParameters;
 
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.junit.jupiter.api.*;
 
 import org.springframework.beans.factory.annotation.Autowired;

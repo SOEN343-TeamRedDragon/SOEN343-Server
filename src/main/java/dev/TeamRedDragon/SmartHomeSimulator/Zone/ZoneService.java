@@ -24,7 +24,7 @@ public class ZoneService {
         return zone;
     }
 
-    public Zone addRoomToZoneByZoneIdAndRoomId(double zoneId, int roomId) {
+    public Zone addRoomToZoneByZoneIdAndRoomId(int zoneId, int roomId) {
         // Initialize a Zone object to hold the target zone
         Zone targetZone = null;
 
@@ -43,7 +43,7 @@ public class ZoneService {
         // If the target zone was found, add the room to it and update the room's zone ID
         if (targetZone != null) {
             targetZone.addRoom(roomId);
-            roomService.setZoneIdByRoomId(roomId, roomId);
+            roomService.setZoneIdByRoomId(zoneId, roomId);
         }
 
         // Return the target zone (or null if it wasn't found)

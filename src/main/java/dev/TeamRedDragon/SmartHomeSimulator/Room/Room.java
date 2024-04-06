@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Room {
     private int roomId;
     private String roomType;
-    private ArrayList<SmartElement> smartElementList = new ArrayList<SmartElement>();
+    private ArrayList<SmartElement> smartElementList;
 
     private int elementCount;
 

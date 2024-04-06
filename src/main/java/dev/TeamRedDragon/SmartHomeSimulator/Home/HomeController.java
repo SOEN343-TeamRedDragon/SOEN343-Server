@@ -12,9 +12,11 @@ public class HomeController {
     @Autowired
     private HomeService homeService;
 
+    private Home home = Home.getHome();
+
     @GetMapping("/Home")
     public Home getHomeLayout() {
-        return Home.getHome();
+        return home;
     }
 
     @PostMapping("/SetAllElements")

@@ -26,9 +26,6 @@ public class RoomController {
         return roomService.getRoomById(Integer.parseInt(roomId));
     }
 
-
-
-
     @PostMapping("/ToggleRoom")
     public Room toggleAllElementsInRoomByRoomIdAndElementType(@RequestBody Map<String, String> data) {
         String roomId = data.get("roomId");
@@ -58,5 +55,18 @@ public class RoomController {
         String userName = data.get("userName");
         String roomId = data.get("roomId");
         return roomService.addUserToRoomByRoomIdAndUserName(Integer.parseInt(roomId), userName);
+    }
+
+    @PostMapping("/OverrideRoomTemp")
+    public Room overrideRoomTemperatureByRoomId(@RequestBody Map<String,String> data) {
+        String roomId = data.get("roomId");
+        String roomTemperature = data.get("roomTemp");
+        return roomService.overrideRoomTemperatureByRoomId(Integer.parseInt(roomId), Double.parseDouble(roomTemperature));
+    }
+
+    @PostMapping("/ResetOverride")
+    public Room resetRoomOverrideRoomId(@RequestBody Map<String, String> data) {
+        String roomId = data.get("roomId");
+        return roomService.resetOverride(Integer.parseInt(roomId));
     }
 }

@@ -22,6 +22,8 @@ public class Room {
     private int userCount;
     private boolean autoModeEnabled = false;
 
+    private boolean tempOverridden = false;
+
     public Room(int roomId, String roomType,double temperature, int zoneId, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
         this.roomId = roomId;
         this.zoneId = zoneId;
@@ -106,7 +108,8 @@ public class Room {
     }
 
     public void setTemperature(double temperature) {
-        this.temperature = temperature;
+        if (!tempOverridden)
+            this.temperature = temperature;
     }
 
     public int getZoneId() {
@@ -115,5 +118,13 @@ public class Room {
 
     public void setZoneId(int zoneId) {
         this.zoneId = zoneId;
+    }
+
+    public boolean isTempOverridden() {
+        return tempOverridden;
+    }
+
+    public void setTempOverridden(boolean tempOverridden) {
+        this.tempOverridden = tempOverridden;
     }
 }

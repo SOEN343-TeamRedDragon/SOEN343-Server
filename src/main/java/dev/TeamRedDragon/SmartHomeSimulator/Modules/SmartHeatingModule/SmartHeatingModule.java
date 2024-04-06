@@ -15,7 +15,7 @@ public class SmartHeatingModule implements ModuleComponent {
     OffCommand offCommand;
     OnCommand onCommand;
 
-    private static SmartHeatingModule smartHeatingModule;
+    private volatile static SmartHeatingModule smartHeatingModule;
 
     private static SimulationClock simulationClock;
 

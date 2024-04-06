@@ -9,7 +9,7 @@ import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class SmartHomeSecurityModule implements Observer, ModuleComponent {
-    private static SmartHomeSecurityModule smartHomeSecurityModule;
+    private volatile static SmartHomeSecurityModule smartHomeSecurityModule;
 
     ConcreteMediator mediator = new ConcreteMediator();
     private SmartHomeSecurityModule(){}

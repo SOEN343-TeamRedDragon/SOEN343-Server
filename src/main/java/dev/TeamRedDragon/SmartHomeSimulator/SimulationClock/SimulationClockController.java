@@ -31,5 +31,4 @@ public class SimulationClockController {
         simulationClockService.stopClock();
         return ResponseEntity.status(HttpStatus.OK).body("Clock Stopped.");
     }
-
 }

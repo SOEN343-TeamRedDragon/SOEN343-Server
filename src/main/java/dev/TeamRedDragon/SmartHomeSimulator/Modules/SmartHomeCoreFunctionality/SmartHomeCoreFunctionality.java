@@ -9,7 +9,7 @@ import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 public class SmartHomeCoreFunctionality implements Observer, ModuleComponent {
 
     ConcreteMediator mediator = new ConcreteMediator();
-    private static SmartHomeCoreFunctionality smartHomeCoreFunctionality;
+    private volatile static SmartHomeCoreFunctionality smartHomeCoreFunctionality;
 
     private SmartHomeCoreFunctionality() {}
 

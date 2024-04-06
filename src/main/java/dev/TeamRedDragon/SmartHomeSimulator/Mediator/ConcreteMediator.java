@@ -5,13 +5,12 @@ import dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHomeCoreFunctionality.S
 import dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHomeSecurityModule.SmartHomeSecurityModule;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ConcreteMediator implements Mediator{
 
-    SmartHeatingModule smartHeatingModule = SmartHeatingModule.getSmartHeatingModule();
-    SmartHomeCoreFunctionality smartHomeCoreFunctionality = SmartHomeCoreFunctionality.getSmartHomeCoreFunctionality();
-    SmartHomeSecurityModule smartHomeSecurityModule = SmartHomeSecurityModule.getSmartHomeSecurityModule();
+    SmartHeatingModule smartHeatingModule;
+    SmartHomeCoreFunctionality smartHomeCoreFunctionality;
+    SmartHomeSecurityModule smartHomeSecurityModule;
     ArrayList<ModuleComponent> moduleList = new ArrayList<>();
 
     @Override

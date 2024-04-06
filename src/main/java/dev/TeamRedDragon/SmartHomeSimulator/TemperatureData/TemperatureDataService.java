@@ -2,6 +2,7 @@ package dev.TeamRedDragon.SmartHomeSimulator.TemperatureData;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -16,7 +17,7 @@ public class TemperatureDataService {
 
     static SimulationClockService SimulationClockService = new SimulationClockService();
 
-    static ArrayList<TemperatureData> csvTemperatureData = new ArrayList<>();
+    static ArrayList<TemperatureData> csvTemperatureData;
 
     static ArrayList<TemperatureData> temperatureDataParsed;
 
@@ -164,10 +165,9 @@ public class TemperatureDataService {
         }
     }
 
-
     public static ArrayList<TemperatureData> getTemperatureFromCSV() {
 
-
+        csvTemperatureData = new ArrayList<>();
         String filePath = "src/main/resources/data/temperatureData2024.csv";
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -183,6 +183,7 @@ public class TemperatureDataService {
         } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
+
         return csvTemperatureData;
 
     }
@@ -199,7 +200,8 @@ public class TemperatureDataService {
         String clockDateSplit = splitClockInput.get(0).substring(4, 10);
         String ClockTimeSplit = splitClockInput.get(1).substring(0, 2);
 
-        temperatureDataParsed = getTemperatureFromCSV();
+        if (temperatureDataParsed == null)
+            temperatureDataParsed = getTemperatureFromCSV();
 
         for (int tempLine = 0; tempLine < temperatureDataParsed.size(); tempLine++) {
             TemperatureData weatherData = temperatureDataParsed.get(tempLine);
@@ -220,5 +222,4 @@ public class TemperatureDataService {
         }
         return false;
     }
-
 }

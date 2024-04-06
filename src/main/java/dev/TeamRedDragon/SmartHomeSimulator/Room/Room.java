@@ -5,6 +5,7 @@ import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.User.User;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Room {
     private int roomId;
@@ -17,7 +18,7 @@ public class Room {
 
     private int zoneId;
 
-    private ArrayList<User> userList = new ArrayList<User>();
+    private ArrayList<User> userList;
 
     private int userCount;
     private boolean autoModeEnabled = false;
@@ -99,7 +100,11 @@ public class Room {
 
 
     public void removeUserFromRoom(User user) {
-        this.userList.remove(user);
+        for (int i = 0; i <= userList.size(); i++) {
+            if (Objects.equals(userList.get(i).getId(), user.getId())) {
+                this.userList.remove(i);
+            }
+        }
         adjustLightsForAutoMode();
     }
 

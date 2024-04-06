@@ -27,8 +27,6 @@ public class Room {
 
     private MotionDetector motionDetector;;
 
-    private ArrayList<MotionDetector> sensorList = new ArrayList<MotionDetector>();
-
 
     public Room(int roomId, String roomType,double temperature, int zoneId, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
         this.roomId = roomId;
@@ -134,11 +132,13 @@ public class Room {
         this.tempOverridden = tempOverridden;
     }
 
-    public void addMotionDetector(MotionDetector sensor) {
-        sensorList.add(sensor);
+
+    public void addSmartElement(SmartElement element) {
+        smartElementList.add(element);
     }
 
-    public void removeMotionDetector(MotionDetector sensor) {
-        sensorList.remove(sensor);
+    public void removeSmartElement(SmartElement element) {
+        smartElementList.remove(element);
     }
+
 }

@@ -5,7 +5,6 @@ import dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHomeCoreFunctionality.S
 import dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHomeSecurityModule.SmartHomeSecurityModule;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ConcreteMediator implements Mediator{
 

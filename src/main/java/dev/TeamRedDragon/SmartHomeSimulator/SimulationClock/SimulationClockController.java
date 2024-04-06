@@ -31,4 +31,9 @@ public class SimulationClockController {
         simulationClockService.stopClock();
         return ResponseEntity.status(HttpStatus.OK).body("Clock Stopped.");
     }
+
+    @PostMapping("/UpdateSimulationTime")
+    public ResponseEntity<Object> updateSimulationTime() {
+        return ResponseEntity.status(HttpStatus.OK).body("Clock time updated.");
+    }
 }

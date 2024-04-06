@@ -90,4 +90,26 @@ public class RoomService {
         return null;
     }
 
+    public Room overrideRoomTemperatureByRoomId(int roomId,double temp) {
+        for (Room room : home.getRoomList())
+        {
+            if (room.getRoomId() == roomId)
+            {
+                room.setTempOverridden(false);
+                room.setTemperature(temp);
+                room.setTempOverridden(true);
+                return room;
+            }
+        }
+        return null;
+    }
+
+    public Room resetOverride(int roomId) {
+        for (Room room : home.getRoomList())
+            if (room.getRoomId() == roomId) {
+                room.setTempOverridden(false);
+                return room;
+            }
+        return null;
+    }
 }

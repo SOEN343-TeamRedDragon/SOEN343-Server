@@ -71,11 +71,12 @@ public class RoomService {
     public Room removeUserFromRoomByRoomIdAndUserName(int roomId, String userName) {
         User user = userService.getUserByUserName(userName);
         for (Room room : home.getRoomList()) {
-            if (room.getRoomId() == roomId && room.getUserList().contains(user)) {
-                room.removeUserFromRoom(user);
-                user.setLocation("");
-                return room;
-            }
+            for (User u : room.getUserList())
+                if (room.getRoomId() == roomId && Objects.equals(u.getId(), user.getId())) {
+                    room.removeUserFromRoom(user);
+                    user.setLocation("");
+                    return room;
+                }
         }
         return null;
     }

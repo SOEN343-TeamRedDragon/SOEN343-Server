@@ -1,5 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Room;
 
+import dev.TeamRedDragon.SmartHomeSimulator.MotionDetectors.MotionDetector;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Light;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.User.User;
@@ -23,6 +24,11 @@ public class Room {
     private boolean autoModeEnabled = false;
 
     private boolean tempOverridden = false;
+
+    private MotionDetector motionDetector;;
+
+    private ArrayList<MotionDetector> sensorList = new ArrayList<MotionDetector>();
+
 
     public Room(int roomId, String roomType,double temperature, int zoneId, ArrayList<SmartElement> smartElementList, ArrayList<User> userList) {
         this.roomId = roomId;
@@ -126,5 +132,13 @@ public class Room {
 
     public void setTempOverridden(boolean tempOverridden) {
         this.tempOverridden = tempOverridden;
+    }
+
+    public void addMotionDetector(MotionDetector sensor) {
+        sensorList.add(sensor);
+    }
+
+    public void removeMotionDetector(MotionDetector sensor) {
+        sensorList.remove(sensor);
     }
 }

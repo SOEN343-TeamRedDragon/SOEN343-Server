@@ -10,7 +10,6 @@ public class ActiveState extends State{
 
     @Override
     public void turnOnAwayMode() {
-
         this.securityModule.changeState(new AwayState(securityModule));
     }
 

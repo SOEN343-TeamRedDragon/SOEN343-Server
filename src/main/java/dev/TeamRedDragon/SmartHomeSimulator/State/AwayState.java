@@ -11,9 +11,7 @@ public class AwayState extends State{
 
     @Override
     public void turnOffAwayMode() {
-
         this.securityModule.changeState(new ActiveState(securityModule));
-
     }
 
     @Override

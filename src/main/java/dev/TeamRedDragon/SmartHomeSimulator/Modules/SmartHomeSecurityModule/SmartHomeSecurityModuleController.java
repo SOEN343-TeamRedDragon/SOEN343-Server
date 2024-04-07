@@ -1,5 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHomeSecurityModule;
 
+import dev.TeamRedDragon.SmartHomeSimulator.State.AwayState;
 import dev.TeamRedDragon.SmartHomeSimulator.State.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,18 +13,20 @@ public class SmartHomeSecurityModuleController {
     @Autowired
     private SmartHomeSecurityModuleService smartHomeSecurityModuleService;
 
-    @GetMapping("/")
-    public State getSmartHomeSecurityState() {
-        return smartHomeSecurityModuleService.getState();
+    @GetMapping("/GetState")
+    public ResponseEntity<Object> getSmartHomeSecurityState() {
+        if(smartHomeSecurityModuleService.getState() instanceof AwayState)
+            return ResponseEntity.ok().body("Away");
+        return ResponseEntity.ok().body("Active");
     }
 
-    @PostMapping("/AwayOn")
+    @PostMapping("/TurnAwayOn")
     public ResponseEntity<Object> turnOnAwayMode() {
         smartHomeSecurityModuleService.turnOnAwayMode();
         return ResponseEntity.ok().body("Away Mode On.");
     }
 
-    @PostMapping("/AwayOff")
+    @PostMapping("/TurnAwayOff")
     public ResponseEntity<Object> turnOffAwayMode() {
         smartHomeSecurityModuleService.turnOffAwayMode();
         return ResponseEntity.ok().body("Away Mode Off.");

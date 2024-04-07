@@ -6,7 +6,9 @@ import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Door;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
+import dev.TeamRedDragon.SmartHomeSimulator.State.ActiveState;
 import dev.TeamRedDragon.SmartHomeSimulator.State.State;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class SmartHomeSecurityModule implements Observer, ModuleComponent {
@@ -20,6 +22,7 @@ public class SmartHomeSecurityModule implements Observer, ModuleComponent {
         if (smartHomeSecurityModule == null) {
             smartHomeSecurityModule = new SmartHomeSecurityModule();
         }
+        smartHomeSecurityModule.init();
         return smartHomeSecurityModule;
     }
 
@@ -47,10 +50,14 @@ public class SmartHomeSecurityModule implements Observer, ModuleComponent {
     }
 
     public void turnOnAwayMode() {
-        state.turnOffAwayMode();
+        state.turnOnAwayMode();
     }
 
     public void turnOffAwayMode() {
         state.turnOffAwayMode();
+    }
+
+    public void init() {
+        changeState(new ActiveState(this));
     }
 }

@@ -9,13 +9,7 @@ public class Home {
     private int homeId;
     private String homeType;
     private static Home home;
-
-
     private int roomCount;
-
-    public void setRoomList(ArrayList<Room> roomList) {
-        this.roomList = roomList;
-    }
 
     private ArrayList<Room> roomList = new ArrayList<Room>();
 
@@ -51,6 +45,11 @@ public class Home {
         return roomList;
     }
 
+    public void setRoomList(ArrayList<Room> roomList) {
+        this.roomList = roomList;
+    }
+
+
     public void setHomeId(int homeId) {
         this.homeId = homeId;
     }
@@ -62,6 +61,8 @@ public class Home {
     public void setRoomCount(int roomCount) {
         this.roomCount = roomCount;
     }
+
+
 
     @Override
     public String toString() {

@@ -6,15 +6,17 @@ import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Door;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Window;
+import dev.TeamRedDragon.SmartHomeSimulator.State.State;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class SmartHomeSecurityModule implements Observer, ModuleComponent {
     private volatile static SmartHomeSecurityModule smartHomeSecurityModule;
+    private State state;
 
     ConcreteMediator mediator = new ConcreteMediator();
     private SmartHomeSecurityModule(){}
-    public static SmartHomeSecurityModule getSmartHomeSecurityModule() {
 
+    public static SmartHomeSecurityModule getSmartHomeSecurityModule() {
         if (smartHomeSecurityModule == null) {
             smartHomeSecurityModule = new SmartHomeSecurityModule();
         }
@@ -34,5 +36,21 @@ public class SmartHomeSecurityModule implements Observer, ModuleComponent {
     @Override
     public void receiveMessage(String message) {
         System.out.print("SmartHomeSecurity Receiving a message: "+ message);
+    }
+
+    public void changeState(State state) {
+        this.state = state;
+    }
+
+    public State getState() {
+        return state;
+    }
+
+    public void turnOnAwayMode() {
+        state.turnOffAwayMode();
+    }
+
+    public void turnOffAwayMode() {
+        state.turnOffAwayMode();
     }
 }

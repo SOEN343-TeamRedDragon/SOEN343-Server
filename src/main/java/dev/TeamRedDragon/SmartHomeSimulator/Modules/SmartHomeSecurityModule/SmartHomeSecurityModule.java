@@ -50,12 +50,15 @@ public class SmartHomeSecurityModule implements Observer, ModuleComponent {
     }
 
     public void turnOnAwayMode() {
+
         state.turnOnAwayMode();
     }
 
     public void turnOffAwayMode() {
         state.turnOffAwayMode();
     }
+
+
 
     public void init() {
         changeState(new ActiveState(this));

@@ -46,6 +46,7 @@ public class SimulationClockService {
     public int getHour() {
         return Integer.parseInt(simulationClock.getTime().substring(11,13));
     }
+    public int getMonth() { return Integer.parseInt(simulationClock.getTime().substring(5,7)); }
 
     @PostConstruct
     public void initialize() {

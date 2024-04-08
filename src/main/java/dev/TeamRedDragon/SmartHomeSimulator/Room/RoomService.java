@@ -1,5 +1,7 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Room;
 
+import dev.TeamRedDragon.SmartHomeSimulator.Command.OffCommand;
+import dev.TeamRedDragon.SmartHomeSimulator.Command.OnCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.ToggleCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Light;
@@ -17,6 +19,8 @@ import java.util.Objects;
 public class RoomService {
     private Home home = Home.getHome();
     ToggleCommand toggleCommand;
+    OffCommand offCommand;
+    OnCommand onCommand;
 
     @Autowired
     private UserService userService;
@@ -45,6 +49,32 @@ public class RoomService {
             {
                 toggleCommand = new ToggleCommand(element);
                 element.setCommand(toggleCommand);
+                element.executeCommand();
+            }
+        }
+        return room;
+    }
+
+    public Room turnOffAllElementsInRoomByRoomIdAndElementType(int roomId, String elementType) {
+        Room room = getRoomById(roomId);
+        for(SmartElement element : room.getSmartElementList()) {
+            if (Objects.equals(element.getElementType(), elementType))
+            {
+                offCommand = new OffCommand(element);
+                element.setCommand(offCommand);
+                element.executeCommand();
+            }
+        }
+        return room;
+    }
+
+    public Room turnOnAllElementsInRoomByRoomIdAndElementType(int roomId, String elementType) {
+        Room room = getRoomById(roomId);
+        for(SmartElement element : room.getSmartElementList()) {
+            if (Objects.equals(element.getElementType(), elementType))
+            {
+                onCommand = new OnCommand(element);
+                element.setCommand(onCommand);
                 element.executeCommand();
             }
         }

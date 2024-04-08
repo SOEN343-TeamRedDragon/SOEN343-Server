@@ -15,7 +15,6 @@ public class SmartHeatingModule implements ModuleComponent {
 
     private volatile static SmartHeatingModule smartHeatingModule;
 
-    private static SimulationClock simulationClock;
     private static Boolean awayModeOn = false;
 
     private ArrayList<Zone> zones = new ArrayList<>();

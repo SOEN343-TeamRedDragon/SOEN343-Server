@@ -10,6 +10,7 @@ public class Home {
     private String homeType;
     private static Home home;
     private int roomCount;
+    private Boolean noUsers;
 
     private ArrayList<Room> roomList = new ArrayList<Room>();
 
@@ -18,6 +19,7 @@ public class Home {
     public static Home getHome(){
         if (home == null){
               home = new Home();
+              home.init();
         }
         return home;
     }
@@ -62,7 +64,14 @@ public class Home {
         this.roomCount = roomCount;
     }
 
-
+    public boolean checkIfNoOneHome() {
+        boolean flag = true;
+        for (Room room : roomList) {
+            if (!room.getUserList().isEmpty())
+                flag = false;
+        }
+        return flag;
+    }
 
     @Override
     public String toString() {
@@ -72,5 +81,7 @@ public class Home {
                 ", roomCount = '" + roomCount + '\'' +
                 '}';
     }
-
+    private void init() {
+        this.noUsers = checkIfNoOneHome();
+    }
 }

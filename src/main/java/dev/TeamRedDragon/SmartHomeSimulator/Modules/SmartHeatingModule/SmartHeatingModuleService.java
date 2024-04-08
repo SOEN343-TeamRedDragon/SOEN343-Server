@@ -28,8 +28,6 @@ public class SmartHeatingModuleService implements Observer, Observable {
     private SmartHeatingModule smartHeatingModule = SmartHeatingModule.getSmartHeatingModule();
     private Home home = Home.getHome();
 
-    private SimulationClock simulationClock = SimulationClock.getSimulationClock();
-
     private SimulationClockService simulationClockService = new SimulationClockService();
 
     private ZoneService zoneService = new ZoneService();
@@ -52,7 +50,7 @@ public class SmartHeatingModuleService implements Observer, Observable {
                         default -> 19;
                     };
 
-                    if (smartHeatingModule.getAwayModeOn() && simulationClockService.getMonth() == (12 | 1 | 2 | 3))
+                    if (home.checkIfNoOneHome() && !smartHeatingModule.getAwayModeOn() && simulationClockService.getMonth() == (12 | 1 | 2 | 3))
                         desiredTemp = 17;
                     if(room.getTemperature() < desiredTemp - 3){
                         for (SmartElement element : room.getSmartElementList())
@@ -127,7 +125,7 @@ public class SmartHeatingModuleService implements Observer, Observable {
             }
             if (flag) {
                 if (TemperatureDataService.IsCoolerOutside(room)) {
-                    if (outdoorTemp > 20)
+                    if (outdoorTemp > 20 && !smartHeatingModule.getAwayModeOn())
                         roomService.turnOnAllElementsInRoomByRoomIdAndElementType(room.getRoomId(),"Window");
 
                     room.setTemperature(room.getTemperature() - 3);

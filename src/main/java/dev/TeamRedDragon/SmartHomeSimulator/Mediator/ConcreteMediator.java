@@ -8,9 +8,9 @@ import java.util.ArrayList;
 
 public class ConcreteMediator implements Mediator{
 
-    SmartHeatingModule smartHeatingModule = SmartHeatingModule.getSmartHeatingModule();
-    SmartHomeCoreFunctionality smartHomeCoreFunctionality = SmartHomeCoreFunctionality.getSmartHomeCoreFunctionality();
-    SmartHomeSecurityModule smartHomeSecurityModule = SmartHomeSecurityModule.getSmartHomeSecurityModule();
+    SmartHeatingModule smartHeatingModule;
+    SmartHomeCoreFunctionality smartHomeCoreFunctionality;
+    SmartHomeSecurityModule smartHomeSecurityModule;
     ArrayList<ModuleComponent> moduleList = new ArrayList<>();
 
     @Override

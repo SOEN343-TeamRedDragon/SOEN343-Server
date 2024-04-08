@@ -97,7 +97,7 @@ public class Room {
 
 
     public void removeUserFromRoom(User user) {
-        this.userList.remove(user);
+        this.userList.remove(0);
         adjustLightsForAutoMode();
     }
 

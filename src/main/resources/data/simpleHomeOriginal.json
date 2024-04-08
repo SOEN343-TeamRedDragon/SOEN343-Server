@@ -208,16 +208,9 @@
           "open": ""
         }
       ],
-      "userCount": 1,
+      "userCount": 0,
       "userList": [
-        {
-          "userId": 1,
-          "name": "Dan",
-          "userName": "DanDuguay",
-          "password": "123",
-          "role": "Parent",
-          "location": "BuildingEntrance"
-        }
+
       ]
     }
   ]

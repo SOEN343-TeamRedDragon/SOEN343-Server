@@ -5,8 +5,10 @@ import dev.TeamRedDragon.SmartHomeSimulator.Command.OffCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.OnCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.SetTemperatureCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
+import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observable;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
+import dev.TeamRedDragon.SmartHomeSimulator.Room.RoomService;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClock;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.AirConditioner;
@@ -20,8 +22,9 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 
 @Service
-public class SmartHeatingModuleService implements Observer {
+public class SmartHeatingModuleService implements Observer, Observable {
 
+    private final RoomService roomService = new RoomService();
     private SmartHeatingModule smartHeatingModule = SmartHeatingModule.getSmartHeatingModule();
     private Home home = Home.getHome();
 
@@ -48,6 +51,9 @@ public class SmartHeatingModuleService implements Observer {
                         case (17), (18), (19), (20), (21), (22), (23) -> zone.getPmTemp();
                         default -> 19;
                     };
+
+                    if (smartHeatingModule.getAwayModeOn() && simulationClockService.getMonth() == (12 | 1 | 2 | 3))
+                        desiredTemp = 17;
                     if(room.getTemperature() < desiredTemp - 3){
                         for (SmartElement element : room.getSmartElementList())
                         {
@@ -99,6 +105,7 @@ public class SmartHeatingModuleService implements Observer {
 
     public void changeRoomTempAlgorithm() {
         boolean flag;
+        double outdoorTemp = TemperatureDataService.getTemperatureFromClockAndTemperatureData();
         for (Room room : home.getRoomList()) {
             flag = true;
             for (SmartElement element : room.getSmartElementList())
@@ -119,8 +126,12 @@ public class SmartHeatingModuleService implements Observer {
                 }
             }
             if (flag) {
-                if (TemperatureDataService.IsCoolerOutside(room))
+                if (TemperatureDataService.IsCoolerOutside(room)) {
+                    if (outdoorTemp > 20)
+                        roomService.turnOnAllElementsInRoomByRoomIdAndElementType(room.getRoomId(),"Window");
+
                     room.setTemperature(room.getTemperature() - 3);
+                }
 
                 else
                     room.setTemperature(room.getTemperature() + 3);
@@ -132,5 +143,20 @@ public class SmartHeatingModuleService implements Observer {
     public void update() {
         updateRoomTempByOutdoorTemp();
         changeRoomTempAlgorithm();
+    }
+
+    @Override
+    public void subscribe(Observer observer) {
+
+    }
+
+    @Override
+    public void unsubscribe(Observer observer) {
+
+    }
+
+    @Override
+    public void notifyObservers() {
+
     }
 }

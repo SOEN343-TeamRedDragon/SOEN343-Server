@@ -12,12 +12,11 @@ import dev.TeamRedDragon.SmartHomeSimulator.Zone.Zone;
 public class SmartHeatingModule implements ModuleComponent {
 
     ConcreteMediator mediator = new ConcreteMediator();
-    OffCommand offCommand;
-    OnCommand onCommand;
 
     private volatile static SmartHeatingModule smartHeatingModule;
 
     private static SimulationClock simulationClock;
+    private static Boolean awayModeOn = false;
 
     private ArrayList<Zone> zones = new ArrayList<>();
     private SmartHeatingModule(){}
@@ -27,6 +26,14 @@ public class SmartHeatingModule implements ModuleComponent {
                 smartHeatingModule = new SmartHeatingModule();
         }
         return smartHeatingModule;
+    }
+
+    public static Boolean getAwayModeOn() {
+        return awayModeOn;
+    }
+
+    public static void setAwayModeOn(Boolean awayModeOn) {
+        SmartHeatingModule.awayModeOn = awayModeOn;
     }
 
     public void addZone(Zone zone) { this.zones.add(zone);}

@@ -23,7 +23,7 @@ public class SmartHomeCoreFunctionality implements Observer, ModuleComponent {
    // Observer pattern for update method for lights - need to add windows
 
     @Override
-    public void update() {
+    public void update(String event) {
         //TODO: do thing
     }
 

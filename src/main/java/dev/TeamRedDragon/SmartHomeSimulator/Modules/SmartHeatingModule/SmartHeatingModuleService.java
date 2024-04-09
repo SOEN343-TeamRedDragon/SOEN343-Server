@@ -25,7 +25,9 @@ import java.util.Objects;
 public class SmartHeatingModuleService implements Observer, Observable {
 
     private final RoomService roomService = new RoomService();
+
     private SmartHeatingModule smartHeatingModule = SmartHeatingModule.getSmartHeatingModule();
+
     private Home home = Home.getHome();
 
     private SimulationClockService simulationClockService = new SimulationClockService();
@@ -125,7 +127,7 @@ public class SmartHeatingModuleService implements Observer, Observable {
             }
             if (flag) {
                 if (TemperatureDataService.IsCoolerOutside(room)) {
-                    if (outdoorTemp > 20 && !smartHeatingModule.getAwayModeOn())
+                    if (outdoorTemp > 20 && !smartHeatingModule.getAwayModeOn() && home.checkIfNoOneHome())
                         roomService.turnOnAllElementsInRoomByRoomIdAndElementType(room.getRoomId(),"Window");
 
                     room.setTemperature(room.getTemperature() - 3);
@@ -138,23 +140,46 @@ public class SmartHeatingModuleService implements Observer, Observable {
     }
 
     @Override
-    public void update() {
-        updateRoomTempByOutdoorTemp();
-        changeRoomTempAlgorithm();
+    public void update(String event) {
+        switch(event) {
+            case("SecurityAway"):
+                updateOnFromSecurity();
+                break;
+            case("SecurityActive"):
+                updateOffFromSecurity();
+                break;
+            case("Clock"):
+                updateRoomTempByOutdoorTemp();
+                changeRoomTempAlgorithm();
+                break;
+        }
     }
+
+
+    public void updateOnFromSecurity() {
+        smartHeatingModule.setAwayModeOn(true);
+    }
+
+    public void updateOffFromSecurity() {
+        smartHeatingModule.setAwayModeOn(false);
+    }
+
 
     @Override
     public void subscribe(Observer observer) {
-
+        this.observers.add(observer);
     }
 
     @Override
     public void unsubscribe(Observer observer) {
-
+        this.observers.remove(observer);
     }
 
     @Override
-    public void notifyObservers() {
-
+    public void notifyObservers(String event) {
+        for (Observer ob : observers)
+        {
+            ob.update(event);
+        }
     }
 }

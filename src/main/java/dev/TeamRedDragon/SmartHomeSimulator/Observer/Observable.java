@@ -9,6 +9,6 @@ public interface Observable {
 
     public void unsubscribe(Observer observer);
 
-    public void notifyObservers();
+    public void notifyObservers(String event);
 
 }

@@ -29,8 +29,4 @@ public class MotionDetector extends SmartElement {
         isTriggered = triggered;
     }
 
-
-
-
-
 }

@@ -4,9 +4,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.Command;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "classType")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Door.class, name = "Door"),
@@ -16,14 +13,6 @@ import java.util.List;
         @JsonSubTypes.Type(value = AirConditioner.class, name = "AirConditioner")
 
 })
-
-enum ELEMENT_TYPE {
-    LIGHT,
-    DOOR,
-    WINDOW,
-    AIR_CONDITIONER,
-    HEATER
-}
 
 public abstract class SmartElement {
     protected int elementId;

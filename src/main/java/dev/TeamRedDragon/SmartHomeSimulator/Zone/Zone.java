@@ -1,9 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Zone;
 import java.util.ArrayList;
 
-import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
-import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
-
 public class Zone {
     private double zoneId;
     private double amTemp;

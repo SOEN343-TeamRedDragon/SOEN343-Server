@@ -3,12 +3,9 @@ package dev.TeamRedDragon.SmartHomeSimulator.Zone;
 import dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHeatingModule.SmartHeatingModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.RoomService;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

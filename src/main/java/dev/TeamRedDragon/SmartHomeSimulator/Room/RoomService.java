@@ -4,14 +4,11 @@ import dev.TeamRedDragon.SmartHomeSimulator.Command.OffCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.OnCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.ToggleCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Light;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.User.User;
 import dev.TeamRedDragon.SmartHomeSimulator.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

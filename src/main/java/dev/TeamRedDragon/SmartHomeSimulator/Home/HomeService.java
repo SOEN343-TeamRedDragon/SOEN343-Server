@@ -14,9 +14,8 @@ import java.util.Objects;
 @Service
 public class HomeService {
     private Home home = Home.getHome();
-    ToggleCommand toggleCommand;
-    OffCommand offCommand;
-    OnCommand onCommand;
+    private OffCommand offCommand;
+    private OnCommand onCommand;
 
 
     @Autowired

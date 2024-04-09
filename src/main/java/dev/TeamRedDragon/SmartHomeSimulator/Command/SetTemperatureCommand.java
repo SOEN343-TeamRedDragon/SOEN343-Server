@@ -1,7 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Command;
 
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Heater;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import java.time.LocalTime;
 
 public class SetTemperatureCommand extends Command {

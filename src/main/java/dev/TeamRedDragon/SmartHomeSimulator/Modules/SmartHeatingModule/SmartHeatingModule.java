@@ -1,10 +1,7 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHeatingModule;
 
-import dev.TeamRedDragon.SmartHomeSimulator.Command.OffCommand;
-import dev.TeamRedDragon.SmartHomeSimulator.Command.OnCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Mediator.ConcreteMediator;
 import dev.TeamRedDragon.SmartHomeSimulator.Mediator.ModuleComponent;
-import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClock;
 import java.util.ArrayList;
 import dev.TeamRedDragon.SmartHomeSimulator.Zone.Zone;
 

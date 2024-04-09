@@ -76,7 +76,7 @@ public class SimulationClock implements Observable {
 
             if (min == 59) {
                 min = 0;
-                notifyObservers();
+                notifyObservers("clock");
                 if (hour == 23) {
                     hour = 0;
                     if (day == maxMonth) {
@@ -93,7 +93,7 @@ public class SimulationClock implements Observable {
                 }
             } else {
                 min += 1;
-                notifyObservers();
+                notifyObservers("Clock");
             }
 
 
@@ -127,10 +127,10 @@ public class SimulationClock implements Observable {
     }
 
     @Override
-    public void notifyObservers() {
+    public void notifyObservers(String event) {
         for (Observer ob : observers)
         {
-            ob.update();
+            ob.update(event);
         }
     }
 

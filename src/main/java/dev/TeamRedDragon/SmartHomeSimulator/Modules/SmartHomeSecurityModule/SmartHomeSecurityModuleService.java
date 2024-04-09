@@ -14,11 +14,9 @@ import java.util.Objects;
 
 @Service
 public class SmartHomeSecurityModuleService implements Observer, Observable {
-    private final RoomService roomService = new RoomService();
+
     private SmartHomeSecurityModule smartHomeSecurityModule = SmartHomeSecurityModule.getSmartHomeSecurityModule();
-
     private ArrayList<Observer> observers = new ArrayList<Observer>();
-
     private Home home = Home.getHome();
 
     public void turnOnAwayMode() {
@@ -30,10 +28,6 @@ public class SmartHomeSecurityModuleService implements Observer, Observable {
     public void turnOffAwayMode() {
         smartHomeSecurityModule.turnOffAwayMode();
         notifyObservers("SecurityActive");
-    }
-
-    public State getState() {
-        return smartHomeSecurityModule.getState();
     }
 
     @Override
@@ -52,6 +46,11 @@ public class SmartHomeSecurityModuleService implements Observer, Observable {
             observer.update(event);
         }
     }
+
+    public State getState() {
+        return smartHomeSecurityModule.getState();
+    }
+
 
     public void closeAllDoorsAndWindows(){
         for (Room room : home.getRoomList()) {

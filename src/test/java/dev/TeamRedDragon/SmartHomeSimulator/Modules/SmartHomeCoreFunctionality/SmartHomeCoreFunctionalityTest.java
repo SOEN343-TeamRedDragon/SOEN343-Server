@@ -25,6 +25,6 @@ class SmartHomeCoreFunctionalityTest {
         // Arrange
         SmartHomeCoreFunctionality smartHomeCoreFunctionality = SmartHomeCoreFunctionality.getSmartHomeCoreFunctionality();
         // Assert
-        assertDoesNotThrow(smartHomeCoreFunctionality::update);
+        assertDoesNotThrow(() -> smartHomeCoreFunctionality.update("SecurityActive"));
     }
 }

@@ -32,6 +32,6 @@ class SmartHeatingModuleServiceTest {
     @Test
     void update() {
         // Assert
-        assertDoesNotThrow(() -> smartHeatingModuleService.update());
+        assertDoesNotThrow(() -> smartHeatingModuleService.update("Heating"));
     }
 }

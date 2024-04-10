@@ -87,7 +87,8 @@ class RoomControllerTest {
         JSONObject innerElement = (JSONObject) innerArray.get(2);
         Boolean isOpen = Boolean.valueOf(innerElement.get("isOpen").toString());
         firstResult.andExpect(status().isOk())
-                .andExpect(jsonPath("$.smartElementList[?(@.elementType=='Light')].elementType").value(obj.get("elementType")))
+                .andExpect(jsonPath("$.smartElementList[?(@.elementType=='Light')].elementType")
+                        .value(obj.get("elementType")))
                 .andExpect(jsonPath("$.smartElementList[?(@.elementType=='Light')].isOpen")
                         .value(isOpen));
 
@@ -104,15 +105,127 @@ class RoomControllerTest {
     }
 
     @Test
-    void changeUserLocationByUserNameAndRoomId() {
+    void turnOnAllElementsInRoomByRoomIdAndElementType() throws Exception {
+        // Arrange
+        obj.put("roomId", 1);
+        obj.put("elementType", "Light");
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/RoomController/TurnOnElement")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.roomId").value(1))
+                .andExpect(jsonPath("$.smartElementList[?(@.elementType=='Light')].elementType")
+                        .value(obj.get("elementType")))
+                .andExpect(jsonPath("$.smartElementList[?(@.elementType=='Light')].isOpen")
+                        .value(true));
+
     }
 
     @Test
-    void removeUserFromRoomByRoomIdAndUserName() {
+    void turnOffAllElementsInRoomByRoomIdAndElementType() throws Exception {
+        // Arrange
+        obj.put("roomId", 1);
+        obj.put("elementType", "Light");
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/RoomController/TurnOffElement")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath("$.roomId").value(1))
+                .andExpect(jsonPath("$.smartElementList[?(@.elementType=='Light')].elementType")
+                        .value(obj.get("elementType")))
+                .andExpect(jsonPath("$.smartElementList[?(@.elementType=='Light')].isOpen")
+                        .value(false));
 
     }
 
     @Test
-    void addUserToRoomByRoomIdAndUserName() {
+    void changeUserLocationByUserNameAndRoomId() throws Exception {
+        // Arrange
+        obj.put("oldRoomId", 1);
+        obj.put("newRoomId", 2);
+        obj.put("userName", "DanDuguay");
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/RoomController/ChangeUserLocation")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk());
     }
+
+    @Test
+    void removeUserFromRoomByRoomIdAndUserName() throws Exception {
+        // Arrange
+        roomService.addUserToRoomByRoomIdAndUserName(1, "DanDuguay");
+
+        obj.put("roomId", 1);
+        obj.put("userName", "DanDuguay");
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/RoomController/RemoveUserFromRoom")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk());
+
+    }
+
+    @Test
+    void addUserToRoomByRoomIdAndUserName() throws Exception {
+        // Arrange
+        obj.put("roomId", 1);
+        obj.put("userName", "DanDuguay");
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/RoomController/AddUserToRoom")
+        .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk());
+
+    }
+
+    @Test
+    void overrideRoomTemperatureByRoomId() throws Exception {
+        // Arrange
+        obj.put("roomId", 1);
+        obj.put("roomTemp", 1);
+
+        JSONParser parser = new JSONParser();
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/RoomController/OverrideRoomTemp")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk())
+                .andExpect(jsonPath(("$.temperature")).value(1));
+    }
+
+    @Test
+    void resetRoomOverrideRoomId() throws Exception {
+        // Arrange
+        obj.put("roomId",1);
+
+        // Act
+        ResultActions result = mockMvc.perform(post("/RoomController/ResetOverride")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(String.valueOf(obj)));
+
+        // Assert
+        result.andExpect(status().isOk());
+    }
+
 }

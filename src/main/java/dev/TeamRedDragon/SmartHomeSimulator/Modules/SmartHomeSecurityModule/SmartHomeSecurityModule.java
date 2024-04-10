@@ -2,6 +2,7 @@ package dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHomeSecurityModule;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Mediator.ConcreteMediator;
 import dev.TeamRedDragon.SmartHomeSimulator.Mediator.ModuleComponent;
+
 import dev.TeamRedDragon.SmartHomeSimulator.State.ActiveState;
 import dev.TeamRedDragon.SmartHomeSimulator.State.State;
 

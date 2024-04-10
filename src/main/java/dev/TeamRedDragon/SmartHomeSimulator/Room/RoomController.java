@@ -33,6 +33,20 @@ public class RoomController {
         return roomService.toggleAllElementsInRoomByRoomIdAndElementType(Integer.parseInt(roomId), elementType);
     }
 
+    @PostMapping("/TurnOnElement")
+    public Room turnOnAllElementsInRoomByRoomIdAndElementType(@RequestBody Map<String, String> data) {
+        String roomId = data.get("roomId");
+        String elementType = data.get("elementType");
+        return roomService.turnOnAllElementsInRoomByRoomIdAndElementType(Integer.parseInt(roomId), elementType);
+    }
+
+    @PostMapping("/TurnOffElement")
+    public Room turnOffAllElementsInRoomByRoomIdAndElementType(@RequestBody Map<String, String> data) {
+        String roomId = data.get("roomId");
+        String elementType = data.get("elementType");
+        return roomService.turnOffAllElementsInRoomByRoomIdAndElementType(Integer.parseInt(roomId), elementType);
+    }
+
     @PostMapping("/ChangeUserLocation")
     public Home changeUserLocationByUserNameAndRoomId(@RequestBody Map<String, String> data) {
         String userName = data.get("userName");

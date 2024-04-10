@@ -6,5 +6,4 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/Heating")
 public class SmartHeatingModuleController {
-
 }

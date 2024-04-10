@@ -45,7 +45,8 @@ public class SmartHeatingModuleService implements Observer, Observable {
                         default -> 19;
                     };
 
-                    if (home.checkIfNoOneHome() && !smartHeatingModule.getAwayModeOn() && simulationClockService.getMonth() == (12 | 1 | 2 | 3))
+                    if (home.checkIfNoOneHome() && !smartHeatingModule.getAwayModeOn()
+                            && simulationClockService.getMonth() == (12 | 1 | 2 | 3))
                         desiredTemp = 17;
                     if(room.getTemperature() < desiredTemp - 3){
                         for (SmartElement element : room.getSmartElementList())
@@ -148,7 +149,6 @@ public class SmartHeatingModuleService implements Observer, Observable {
         }
     }
 
-
     public void updateOnFromSecurity() {
         smartHeatingModule.setAwayModeOn(true);
     }
@@ -156,7 +156,6 @@ public class SmartHeatingModuleService implements Observer, Observable {
     public void updateOffFromSecurity() {
         smartHeatingModule.setAwayModeOn(false);
     }
-
 
     @Override
     public void subscribe(Observer observer) {

@@ -1,7 +1,5 @@
 package dev.TeamRedDragon.SmartHomeSimulator.MotionDetectors;
 
-
-
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;

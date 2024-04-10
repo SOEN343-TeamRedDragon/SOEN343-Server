@@ -2,7 +2,6 @@ package dev.TeamRedDragon.SmartHomeSimulator.TemperatureData;
 
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
-import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
 import java.io.*;

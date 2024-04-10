@@ -1,7 +1,6 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHomeSecurityModule;
 
 import dev.TeamRedDragon.SmartHomeSimulator.State.AwayState;
-import dev.TeamRedDragon.SmartHomeSimulator.State.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

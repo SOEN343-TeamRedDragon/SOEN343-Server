@@ -3,8 +3,6 @@ package dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHomeCoreFunctionality;
 import dev.TeamRedDragon.SmartHomeSimulator.Mediator.ConcreteMediator;
 import dev.TeamRedDragon.SmartHomeSimulator.Mediator.ModuleComponent;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Light;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 
 public class SmartHomeCoreFunctionality implements Observer, ModuleComponent {
 

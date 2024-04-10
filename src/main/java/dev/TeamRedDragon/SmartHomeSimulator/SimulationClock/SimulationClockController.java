@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 @RestController
@@ -35,5 +36,17 @@ public class SimulationClockController {
     @PostMapping("/UpdateSimulationTime")
     public ResponseEntity<Object> updateSimulationTime() {
         return ResponseEntity.status(HttpStatus.OK).body("Clock time updated.");
+    }
+
+    @PostMapping("/UpdateTime")
+    public ResponseEntity<Object> updateTime(@RequestBody Map<String, Integer> data) {
+        int year = data.get("year");
+        int month = data.get("month");
+        int dayOfMonth = data.get("dayOfMonth");
+        int hour = data.get("hour");
+        int minute = data.get("minute");
+        LocalDateTime dateTime = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
+        simulationClockService.updateTime(dateTime);
+        return ResponseEntity.status(HttpStatus.OK).body("Time successfully updated.");
     }
 }

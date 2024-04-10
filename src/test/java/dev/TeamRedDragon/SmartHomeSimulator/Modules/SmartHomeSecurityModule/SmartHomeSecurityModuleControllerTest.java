@@ -35,18 +35,28 @@ class SmartHomeSecurityModuleControllerTest {
     @Test
     void getSmartHomeSecurityState() throws Exception {
         // Act
-        ResultActions result = mockMvc.perform(get("/GetState"));
+        ResultActions result = mockMvc.perform(get("/Security/GetState"));
 
         // Assert
-
+        result.andExpect(status().isOk());
 
     }
 
     @Test
-    void turnOnAwayMode() {
+    void turnOnAwayMode() throws Exception {
+        // Act
+        ResultActions result = mockMvc.perform(post("/Security/TurnAwayOn"));
+
+        // Assert
+        result.andExpect(status().isOk());
     }
 
     @Test
-    void turnOffAwayMode() {
+    void turnOffAwayMode() throws Exception {
+        // Act
+        ResultActions result = mockMvc.perform((post("/Security/TurnAwayOff")));
+
+        // Assert
+        result.andExpect(status().isOk());
     }
 }

@@ -1,6 +1,10 @@
 package dev.TeamRedDragon.SmartHomeSimulator.SimulationClock;
 
 import jakarta.annotation.PostConstruct;
+
+import java.time.LocalDateTime;
+
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -47,6 +51,10 @@ public class SimulationClockService {
         return Integer.parseInt(simulationClock.getTime().substring(11,13));
     }
     public int getMonth() { return Integer.parseInt(simulationClock.getTime().substring(5,7)); }
+
+    public void updateTime(LocalDateTime dateTime) {
+        
+    }
 
     @PostConstruct
     public void initialize() {

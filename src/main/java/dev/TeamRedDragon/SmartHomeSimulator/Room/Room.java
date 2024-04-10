@@ -16,6 +16,7 @@ public class Room {
     private int elementCount;
 
     private double temperature;
+    private double prevRoomTemp;
 
     private int zoneId;
 
@@ -38,6 +39,7 @@ public class Room {
         this.elementCount = smartElementList.size();
         this.userList = userList;
         this.userCount = userList.size();
+        this.prevRoomTemp = temperature;
     }
 
     public ArrayList<SmartElement> getSmartElementList() {
@@ -117,8 +119,11 @@ public class Room {
     }
 
     public void setTemperature(double temperature) {
-        if (!tempOverridden)
+        if (!tempOverridden) {
+            this.prevRoomTemp = this.temperature;
             this.temperature = temperature;
+        }
+
     }
 
     public int getZoneId() {
@@ -134,6 +139,7 @@ public class Room {
     }
 
     public void setTempOverridden(boolean tempOverridden) {
+        this.prevRoomTemp = this.temperature;
         this.tempOverridden = tempOverridden;
     }
 
@@ -146,4 +152,11 @@ public class Room {
         smartElementList.remove(element);
     }
 
+    public double getPrevRoomTemp() {
+        return prevRoomTemp;
+    }
+
+    public void setPrevRoomTemp(double prevRoomTemp) {
+        this.prevRoomTemp = prevRoomTemp;
+    }
 }

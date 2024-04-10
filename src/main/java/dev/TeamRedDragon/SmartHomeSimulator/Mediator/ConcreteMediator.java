@@ -15,9 +15,9 @@ public class ConcreteMediator implements Mediator{
 
     @Override
     public void notify(ModuleComponent sender, String message) {
-        addModule(smartHeatingModule);
-        addModule(smartHomeSecurityModule);
-        addModule(smartHomeCoreFunctionality);
+        addModule(smartHeatingModule = SmartHeatingModule.getSmartHeatingModule());
+        addModule(smartHomeSecurityModule = SmartHomeSecurityModule.getSmartHomeSecurityModule());
+        addModule(smartHomeCoreFunctionality = SmartHomeCoreFunctionality.getSmartHomeCoreFunctionality());
 
             for( ModuleComponent module: moduleList){
                 if(!module.getClass().isInstance(sender)) {
@@ -26,7 +26,7 @@ public class ConcreteMediator implements Mediator{
             }
     }
     public void addModule(ModuleComponent module){
-        moduleList.add(module);
+        this.moduleList.add(module);
     }
 
 }

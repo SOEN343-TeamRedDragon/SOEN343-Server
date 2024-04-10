@@ -32,6 +32,26 @@ class SmartHeatingModuleServiceTest {
     @Test
     void update() {
         // Assert
-        assertDoesNotThrow(() -> smartHeatingModuleService.update("Heating"));
+        assertDoesNotThrow(() -> smartHeatingModuleService.update("SecurityAway"));
+        assertDoesNotThrow(() -> smartHeatingModuleService.update("SecurityActive"));
+        assertDoesNotThrow(() -> smartHeatingModuleService.update("Clock"));
+    }
+
+    @Test
+    void subscribe() {
+        // Assert
+        assertDoesNotThrow(() -> smartHeatingModuleService.subscribe(smartHeatingModuleService));
+    }
+
+    @Test
+    void unsubscribe() {
+        // Assert
+        assertDoesNotThrow(() -> smartHeatingModuleService.unsubscribe(smartHeatingModuleService));
+    }
+
+    @Test
+    void notifyObservers() {
+        // Assert
+        assertDoesNotThrow(() -> smartHeatingModuleService.notifyObservers("Heater"));
     }
 }

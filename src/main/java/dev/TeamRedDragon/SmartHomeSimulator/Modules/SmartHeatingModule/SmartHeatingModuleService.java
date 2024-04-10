@@ -1,18 +1,13 @@
 package dev.TeamRedDragon.SmartHomeSimulator.Modules.SmartHeatingModule;
 
-import dev.TeamRedDragon.SmartHomeSimulator.Command.Command;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.OffCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Command.OnCommand;
-import dev.TeamRedDragon.SmartHomeSimulator.Command.SetTemperatureCommand;
 import dev.TeamRedDragon.SmartHomeSimulator.Home.Home;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observable;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.Room;
 import dev.TeamRedDragon.SmartHomeSimulator.Room.RoomService;
-import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClock;
 import dev.TeamRedDragon.SmartHomeSimulator.SimulationClock.SimulationClockService;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.AirConditioner;
-import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.Heater;
 import dev.TeamRedDragon.SmartHomeSimulator.SmartElement.SmartElement;
 import dev.TeamRedDragon.SmartHomeSimulator.TemperatureData.TemperatureDataService;
 import dev.TeamRedDragon.SmartHomeSimulator.Zone.Zone;
@@ -36,8 +31,6 @@ public class SmartHeatingModuleService implements Observer, Observable {
 
     OnCommand onCommand;
     OffCommand offCommand;
-
-    SetTemperatureCommand setTemperatureCommand;
 
     public void updateRoomTempByOutdoorTemp() {
         double desiredTemp = 0;
@@ -155,7 +148,6 @@ public class SmartHeatingModuleService implements Observer, Observable {
         }
     }
 
-
     public void updateOnFromSecurity() {
         smartHeatingModule.setAwayModeOn(true);
     }
@@ -163,7 +155,6 @@ public class SmartHeatingModuleService implements Observer, Observable {
     public void updateOffFromSecurity() {
         smartHeatingModule.setAwayModeOn(false);
     }
-
 
     @Override
     public void subscribe(Observer observer) {

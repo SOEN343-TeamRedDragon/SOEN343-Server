@@ -104,7 +104,7 @@ public class Room {
 
 
     public void removeUserFromRoom(User user) {
-        for (int i = 0; i <= userList.size(); i++) {
+        for (int i = 0; i < userList.size(); i++) {
             if (Objects.equals(userList.get(i).getId(), user.getId())) {
                 this.userList.remove(i);
             }

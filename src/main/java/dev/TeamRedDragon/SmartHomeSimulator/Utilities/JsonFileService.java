@@ -131,52 +131,6 @@ public class JsonFileService {
         home.setRoomList(roomList);
     }
 
-    public static JSONObject updateHomeLayout() {
-        JSONObject obj = new JSONObject();
-        Home home = Home.getHome();
-
-        obj.put("homeId", home.getHomeId());
-        obj.put("homeType", "simpleHome");
-        obj.put("roomCount", home.getRoomCount());
-
-        JSONArray roomJArray = new JSONArray();
-
-        ArrayList<Room> roomList = home.getRoomList();
-
-        for (Room room : roomList)
-        {
-            JSONObject roomObj = new JSONObject();
-
-            roomObj.put("roomId", room.getRoomId());
-            roomObj.put("roomType", room.getRoomType());
-            roomObj.put("elementCount", room.getElementCount());
-
-            JSONArray smartElementJArray = new JSONArray();
-
-            ArrayList<SmartElement> smartElementList = room.getSmartElementList();
-
-            for (SmartElement smartElement : smartElementList)
-            {
-                JSONObject smartElementObj = new JSONObject();
-
-                smartElementObj.put("classType", smartElement.getElementType());
-                smartElementObj.put("elementId", smartElement.getElementId());
-                smartElementObj.put("open", smartElement.getIsOpen());
-                if (smartElement.getElementType().equals("Window"))
-                {
-                    smartElementObj.put("blocked", ((Window) smartElement).getIsBlocked());
-                }
-
-                smartElementJArray.add(smartElementObj);
-            }
-
-            roomObj.put("smartElements", smartElementJArray);
-            roomJArray.add(roomObj);
-        }
-        obj.put("roomList", roomJArray);
-        return obj;
-    }
-
     @PostConstruct
     public void init(){
         try {

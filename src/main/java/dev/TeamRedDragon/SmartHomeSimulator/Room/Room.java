@@ -139,7 +139,6 @@ public class Room {
     }
 
     public void setTempOverridden(boolean tempOverridden) {
-        this.prevRoomTemp = this.temperature;
         this.tempOverridden = tempOverridden;
     }
 

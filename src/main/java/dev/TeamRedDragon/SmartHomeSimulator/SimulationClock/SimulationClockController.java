@@ -33,7 +33,9 @@ public class SimulationClockController {
     }
 
     @PostMapping("/UpdateSimulationTime")
-    public ResponseEntity<Object> updateSimulationTime() {
+    public ResponseEntity<Object> updateSimulationTime(@RequestBody Map<String, String> data) {
+       String date = data.get("date");
+         simulationClockService.updateSimulationTime(date);
         return ResponseEntity.status(HttpStatus.OK).body("Clock time updated.");
     }
 }

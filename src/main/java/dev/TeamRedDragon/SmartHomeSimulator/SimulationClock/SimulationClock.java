@@ -3,7 +3,6 @@ package dev.TeamRedDragon.SmartHomeSimulator.SimulationClock;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observable;
 import dev.TeamRedDragon.SmartHomeSimulator.Observer.Observer;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -16,7 +15,21 @@ public class SimulationClock implements Observable {
 
     private static String time;
 
-    private SimulationClock() {}
+    // Moved date variables to private class attributes
+    private int year;
+    private int month;
+    private int day;
+    private int hour;
+    private int min;
+
+    private SimulationClock() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        this.year = currentDateTime.getYear();
+        this.month = currentDateTime.getMonthValue();
+        this.day = currentDateTime.getDayOfMonth();
+        this.hour = currentDateTime.getHour();
+        this.min = currentDateTime.getMinute();
+    }
 
     public static SimulationClock getSimulationClock() {
         if (simulationClock == null) {
@@ -32,17 +45,18 @@ public class SimulationClock implements Observable {
             this.timeSpeed = timeSpeed;
     }
 
-    public String getTime() {return this.time;}
+    public synchronized void setDate(int year, int month, int day, int hour, int min) {
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.hour = hour;
+        this.min = min;
+    }
+    
+
+    public String getTime() { return this.time; }
 
     public Runnable clockRunnable = new Runnable() {
-
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        int year = currentDateTime.getYear();
-        int month = currentDateTime.getMonthValue();
-        int day = currentDateTime.getDayOfMonth();
-        int hour = currentDateTime.getHour();
-        int min = currentDateTime.getMinute();
-
         public String tick() {
             int maxMonth = 0;
 
@@ -83,7 +97,7 @@ public class SimulationClock implements Observable {
                         day = 1;
                         if (month == 12) {
                             month = 1;
-                            year += year;
+                            year += 1; // Fixed a potential bug here
                         } else
                             month += 1;
                     } else
@@ -95,7 +109,6 @@ public class SimulationClock implements Observable {
                 min += 1;
                 notifyObservers("Clock");
             }
-
 
             String output = String.format("%d-%02d-%02d %02d:%02d", year, month, day, hour, min);
             return output;
